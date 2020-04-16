@@ -7,14 +7,16 @@
     android:background="@drawable/welcome3"
     tools:context=".MainActivity">
 
+    <!--just our app logo-->
     <ImageView
         android:id="@+id/app_logo"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
-        android:src="@drawable/applogo" />
+        android:src="@drawable/applogo3" />
 
+    <!--textview that welcomes us to the app-->
     <TextView
         android:id="@+id/app_slogan"
         android:layout_width="220dp"
@@ -29,6 +31,7 @@
         android:textSize="22sp"
         android:textStyle="bold" />
 
+    <!--signup button-->
     <Button
         android:id="@+id/welcome_signup_button"
         android:layout_width="match_parent"
@@ -45,6 +48,7 @@
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 
+    <!--sign in button-->
     <Button
         android:id="@+id/welcome_login_button"
         android:layout_width="match_parent"
