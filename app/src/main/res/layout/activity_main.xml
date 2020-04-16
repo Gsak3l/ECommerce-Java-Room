@@ -25,7 +25,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="140dp"
         android:layout_marginEnd="88dp"
-        android:text="Find, Discover, Choose and Buy Everything"
+        android:text="Find the right clothing for your needs"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="22sp"
