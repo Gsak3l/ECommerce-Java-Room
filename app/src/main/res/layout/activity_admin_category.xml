@@ -8,7 +8,7 @@
 
     <!--add new product text-->
     <TextView
-        android:id="@+id/slogan_category"
+        android:id="@+id/main_header_admin_category_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -19,38 +19,49 @@
         android:textSize="26sp"
         android:textStyle="bold" />
 
-    <!--linear layout for the add new product page (admin only)
-    linear1 is for the male clothing-->
-    <LinearLayout
-        android:id="@+id/category_linear_1"
+
+    <!--male clothing category-->
+    <TextView
+        android:id="@+id/male_text_admin_category_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/slogan_category"
+        android:layout_below="@+id/main_header_admin_category_page"
+        android:layout_marginTop="25dp"
+        android:text="Male Clothing"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/category_male_clothing_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/male_text_admin_category_page"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/male_t_shirts"
+            android:id="@+id/male_t_shirts_admin_category_page"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/male_tshirts" />
 
         <ImageView
-            android:id="@+id/male_trousers"
+            android:id="@+id/male_trousers_admin_category_page"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/male_trousers" />
 
         <ImageView
-            android:id="@+id/male_sweaters"
+            android:id="@+id/male_sweaters_admin_category_page"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/male_sweater" />
 
         <ImageView
-            android:id="@+id/male_shoes"
+            android:id="@+id/male_shoes_admin_category_page"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:paddingBottom="15dp"
@@ -59,44 +70,55 @@
 
     </LinearLayout>
 
-    <!--linear layout for the add new product page (admin only)
-    linear1 is for the female clothing-->
-    <LinearLayout
-        android:id="@+id/category_linear_2"
+    <!--female clothing category-->
+    <TextView
+        android:id="@+id/female_text_admin_category_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/category_linear_1"
+        android:layout_below="@+id/category_male_clothing_linear"
+        android:layout_marginTop="25dp"
+        android:text="Female Clothing"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/category_female_clothing_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/female_text_admin_category_page"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/female_dresses"
+            android:id="@+id/female_dresses_admin_category_page"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/female_dress" />
 
         <ImageView
-            android:id="@+id/female_trousers"
+            android:id="@+id/female_trousers_admin_category_page"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/female_trousers" />
 
         <ImageView
-            android:id="@+id/female_skirts"
+            android:id="@+id/female_skirts__admin_category_page"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/female_skirt" />
 
-
         <ImageView
-            android:id="@+id/female_shoes"
+            android:id="@+id/female_shoes__admin_category_page"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:paddingBottom="15dp"
             android:src="@drawable/female_shoes" />
-
     </LinearLayout>
+
+    
 
 
 </RelativeLayout>
