@@ -11,6 +11,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button createAccountButton;
     private EditText registerEmail;
     private EditText registerPassword;
+    private EditText registerFullName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         //getting all the elements from our xml file
         createAccountButton = (Button) findViewById(R.id.register_button);
+        registerFullName = (EditText) findViewById(R.id.register_full_name);
         registerEmail = (EditText) findViewById(R.id.register_email);
         registerPassword = (EditText) findViewById(R.id.register_password);
 

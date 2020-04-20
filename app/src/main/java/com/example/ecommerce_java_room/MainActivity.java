@@ -32,6 +32,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(login);
             }
         });
-
+        //when sign-up button of our homepage gets clicked, we change the view from mainactivity to the register activity
+        signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent login = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(login);
+            }
+        });
     }
 }
