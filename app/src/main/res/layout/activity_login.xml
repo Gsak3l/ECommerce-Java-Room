@@ -9,16 +9,17 @@
 
 
     <!--our logo for the login screen-->
-    <ImageView
-        android:id="@+id/login_app_logo"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="240dp"
-        android:src="@drawable/applogo3" />
 
 
     <!--our email to login to the app-->
+
+    <ImageView
+        android:id="@+id/login_app_logo"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_marginTop="200dp"
+        android:src="@drawable/applogo6" />
+
     <EditText
         android:id="@+id/login_email"
         android:layout_width="match_parent"
