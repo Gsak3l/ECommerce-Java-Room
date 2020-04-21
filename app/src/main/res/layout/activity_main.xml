@@ -30,7 +30,7 @@
         android:layout_marginStart="97dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="94dp"
-        android:text="Find the right clothing for your needs"
+        android:text="Find the right clothes for your special needs."
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="22sp"
