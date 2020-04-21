@@ -38,6 +38,24 @@ public class AdminCategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_category);
 
+        //giving reference to all the ImageViews of our xml
+        male_t_shirts = (ImageView) findViewById(R.id.male_t_shirts_admin_category_page);
+        male_trousers = (ImageView) findViewById(R.id.male_trousers_admin_category_page);
+        male_sweater = (ImageView) findViewById(R.id.male_sweaters_admin_category_page);
+        male_shoes = (ImageView) findViewById(R.id.male_shoes_admin_category_page);
+        male_hat = (ImageView) findViewById(R.id.male_hat_admin_cattegory_page);
+        male_watch = (ImageView) findViewById(R.id.male_watch_admin_cattegory_page_cate);
+        male_sunglasses = (ImageView) findViewById(R.id.male_sunglasses_admin_cattegory_page);
+        male_suitcases = (ImageView) findViewById(R.id.male_suitcase_admin_cattegory_page);
+        female_dress = (ImageView) findViewById(R.id.female_dresses_admin_category_page);
+        female_trousers = (ImageView) findViewById(R.id.female_trousers_admin_category_page);
+        female_skirt = (ImageView) findViewById(R.id.female_skirts__admin_category_page);
+        female_shoes = (ImageView) findViewById(R.id.female_shoes__admin_category_page);
+        female_purse = (ImageView) findViewById(R.id.female_purse_admin_cattegory_page);
+        female_scarf = (ImageView) findViewById(R.id.female_scarf_admin_cattegory_page_cate);
+        female_necklace = (ImageView) findViewById(R.id.female_necklace_admin_cattegory_page);
+        female_bracelet = (ImageView) findViewById(R.id.female_bracelet_admin_cattegory_page);
+
 
         //---------------MALE CLOTHES ONCLICK LISTENERS-----------------
 
@@ -46,7 +64,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminNewProductActivity.class);
-                intent.putExtra("category", "male_t_shirts");
+                intent.putExtra("category", "male_t_shirts");  //passing to the AdminNewProductActivity.java the category with the name x
                 startActivity(intent);
             }
         });
@@ -55,7 +73,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminNewProductActivity.class);
-                intent.putExtra("category", "male_trousers");
+                intent.putExtra("category", "male_trousers"); //passing to the AdminNewProductActivity.java the category with the name x
                 startActivity(intent);
             }
         });
@@ -64,7 +82,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminNewProductActivity.class);
-                intent.putExtra("category", "male_sweater");
+                intent.putExtra("category", "male_sweater"); //passing to the AdminNewProductActivity.java the category with the name x
                 startActivity(intent);
             }
         });
@@ -73,7 +91,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminNewProductActivity.class);
-                intent.putExtra("category", "male_shoes");
+                intent.putExtra("category", "male_shoes"); //passing to the AdminNewProductActivity.java the category with the name x
                 startActivity(intent);
             }
         });
@@ -86,7 +104,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminNewProductActivity.class);
-                intent.putExtra("category", "male_hat");
+                intent.putExtra("category", "male_hat"); //passing to the AdminNewProductActivity.java the category with the name x
                 startActivity(intent);
             }
         });
@@ -95,7 +113,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminNewProductActivity.class);
-                intent.putExtra("category", "male_watch");
+                intent.putExtra("category", "male_watch"); //passing to the AdminNewProductActivity.java the category with the name x
                 startActivity(intent);
             }
         });
@@ -104,7 +122,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminNewProductActivity.class);
-                intent.putExtra("category", "male_sunglasses");
+                intent.putExtra("category", "male_sunglasses"); //passing to the AdminNewProductActivity.java the category with the name x
                 startActivity(intent);
             }
         });
@@ -113,7 +131,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminNewProductActivity.class);
-                intent.putExtra("category", "male_suicase");
+                intent.putExtra("category", "male_suicase"); //passing to the AdminNewProductActivity.java the category with the name x
                 startActivity(intent);
             }
         });
@@ -126,7 +144,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminNewProductActivity.class);
-                intent.putExtra("category", "female_dress");
+                intent.putExtra("category", "female_dress"); //passing to the AdminNewProductActivity.java the category with the name x
                 startActivity(intent);
             }
         });
@@ -135,7 +153,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminNewProductActivity.class);
-                intent.putExtra("category", "female_trousers");
+                intent.putExtra("category", "female_trousers"); //passing to the AdminNewProductActivity.java the category with the name x
                 startActivity(intent);
             }
         });
@@ -144,7 +162,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminNewProductActivity.class);
-                intent.putExtra("category", "female_skirt");
+                intent.putExtra("category", "female_skirt"); //passing to the AdminNewProductActivity.java the category with the name x
                 startActivity(intent);
             }
         });
@@ -153,7 +171,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminNewProductActivity.class);
-                intent.putExtra("category", "female_shoes");
+                intent.putExtra("category", "female_shoes"); //passing to the AdminNewProductActivity.java the category with the name x
                 startActivity(intent);
             }
         });
@@ -166,7 +184,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminNewProductActivity.class);
-                intent.putExtra("category", "female_purse");
+                intent.putExtra("category", "female_purse"); //passing to the AdminNewProductActivity.java the category with the name x
                 startActivity(intent);
             }
         });
@@ -175,7 +193,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminNewProductActivity.class);
-                intent.putExtra("category", "female_scarf");
+                intent.putExtra("category", "female_scarf"); //passing to the AdminNewProductActivity.java the category with the name x
                 startActivity(intent);
             }
         });
@@ -184,7 +202,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminNewProductActivity.class);
-                intent.putExtra("category", "female_necklace");
+                intent.putExtra("category", "female_necklace"); //passing to the AdminNewProductActivity.java the category with the name x
                 startActivity(intent);
             }
         });
@@ -193,7 +211,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminNewProductActivity.class);
-                intent.putExtra("category", "female_bracelet");
+                intent.putExtra("category", "female_bracelet"); //passing to the AdminNewProductActivity.java the category with the name x
                 startActivity(intent);
             }
         });
