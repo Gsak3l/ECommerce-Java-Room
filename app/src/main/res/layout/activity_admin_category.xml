@@ -118,100 +118,52 @@
             android:src="@drawable/female_shoes" />
     </LinearLayout>
 
-    <!--male accessories category-->
+    <!--accessories category-->
     <TextView
-        android:id="@+id/male_accessories_text_admin_category_page"
+        android:id="@+id/accessories_text_admin_category_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/category_female_clothing_linear"
         android:layout_marginTop="25dp"
-        android:text="Accessories for Men"
+        android:text="Accessories"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold" />
 
     <LinearLayout
-        android:id="@+id/category_male_accessories_linear"
+        android:id="@+id/category_accessories_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/male_accessories_text_admin_category_page"
+        android:layout_below="@id/accessories_text_admin_category_page"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/male_hat_admin_cattegory_page"
+            android:id="@+id/accessories_hat_admin_cattegory_page"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/male_hat" />
 
         <ImageView
-            android:id="@+id/male_watch_admin_cattegory_page_cate"
+            android:id="@+id/accessories_watch_admin_cattegory_page_cate"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/male_watch" />
 
         <ImageView
-            android:id="@+id/male_sunglasses_admin_cattegory_page"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/male_sunglasses" />
-
-        <ImageView
-            android:id="@+id/male_suitcase_admin_cattegory_page"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:paddingBottom="15dp"
-            android:src="@drawable/male_suitcase" />
-    </LinearLayout>
-
-    <!--female accessories category-->
-    <TextView
-        android:id="@+id/female_accessories_text_admin_category_page"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/category_male_accessories_linear"
-        android:layout_marginTop="25dp"
-        android:text="Accessories for Women"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <LinearLayout
-        android:id="@+id/category_female_accessories_linear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/female_accessories_text_admin_category_page"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/female_purse_admin_cattegory_page"
+            android:id="@+id/accessories_purse_admin_cattegory_page"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/female_purse" />
 
         <ImageView
-            android:id="@+id/female_scarf_admin_cattegory_page_cate"
+            android:id="@+id/accessories_scarf_admin_cattegory_page_cate"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/female_scarf" />
 
-        <ImageView
-            android:id="@+id/female_necklace_admin_cattegory_page"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/female_necklace" />
-
-        <ImageView
-            android:id="@+id/female_bracelet_admin_cattegory_page"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:paddingBottom="15dp"
-            android:src="@drawable/female_bracelet" />
     </LinearLayout>
 
 

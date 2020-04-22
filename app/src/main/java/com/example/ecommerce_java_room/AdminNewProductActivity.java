@@ -15,8 +15,8 @@ public class AdminNewProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_new_product);
 
-        categoryName = getIntent().getExtras().get("category").toString(); //basically the key from our putExtra() functions on the AdminCategoryActivity.java
-
+        //getting the category from our AdminCategoryActivity
+        categoryName = getIntent().getExtras().get("category").toString();
         Toast.makeText(this, categoryName, Toast.LENGTH_SHORT).show();
     }
 }
