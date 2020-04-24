@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/recycler_view_parent_layout">
 
     <TextView
         android:id="@+id/product_title"
@@ -10,8 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="THIS IS AMERICA"
-        android:textSize="25sp"
+        android:text="THIS IS THE TITLE OF THE PRODUCT"
+        android:textSize="22sp"
         android:textStyle="bold" />
 
     <ImageView
@@ -26,23 +27,34 @@
         android:id="@+id/recycler_view_product_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_below="@+id/recycler_view_product_image"
-        android:text="22.90$"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="22.90$"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold" />
+
     <TextView
         android:id="@+id/recycler_view_product_quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/recycler_view_product_price"
-        android:text="Item Code: 1801"
         android:layout_centerHorizontal="true"
+        android:text="Units Available: 14"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/recycler_view_product_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recycler_view_product_quantity"
+        android:layout_centerHorizontal="true"
+        android:text="Unit Code: 1501"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
