@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         loginEmail = (EditText) findViewById(R.id.login_email);
         loginPassword = (EditText) findViewById(R.id.login_password);
 
+
         //getting our database
         database = Room.databaseBuilder(this, UserDatabase.class, "User")
                 .allowMainThreadQueries().build();

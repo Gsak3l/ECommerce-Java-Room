@@ -47,6 +47,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
         accessories_watch = (ImageView) findViewById(R.id.accessories_watch_admin_cattegory_page_cate);
 
 
+
         //---------------MALE CLOTHES ONCLICK LISTENERS-----------------
 
         //male t-shirts onclick listener
