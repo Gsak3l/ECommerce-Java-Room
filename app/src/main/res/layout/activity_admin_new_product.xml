@@ -6,11 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".AdminNewProductActivity">
 
+    <TextView
+        android:id="@+id/admin_new_product_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Products"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recycler_view">
+        android:layout_below="@+id/admin_new_product_text_view">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/admin_add_new_product_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp"
+        app:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/add_icon_white_24dp"
+        />
 
 </RelativeLayout>
