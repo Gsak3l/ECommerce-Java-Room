@@ -6,6 +6,8 @@ import androidx.room.Query;
 
 import com.example.ecommerce_java_room.model.User;
 
+import java.util.List;
+
 @Dao
 public interface UserDAO {
 
@@ -14,4 +16,7 @@ public interface UserDAO {
 
     @Insert
     void insert(User user);
+
+    @Query("SELECT * FROM User")
+    List<User> getAllUsers();
 }

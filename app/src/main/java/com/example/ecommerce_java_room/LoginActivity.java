@@ -14,6 +14,8 @@ import com.example.ecommerce_java_room.data.UserDAO;
 import com.example.ecommerce_java_room.data.UserDatabase;
 import com.example.ecommerce_java_room.model.User;
 
+import java.util.List;
+
 public class LoginActivity extends AppCompatActivity {
 
     //initializing our xml elements
@@ -58,6 +60,9 @@ public class LoginActivity extends AppCompatActivity {
                     Intent i = new Intent(LoginActivity.this, AdminCategoryActivity.class);
                     startActivity(i);
                 }
+                //limit testing
+                List<User> users = db.getAllUsers();
+                System.out.println(users.size());
             }
         });
     }

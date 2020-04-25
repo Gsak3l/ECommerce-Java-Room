@@ -24,10 +24,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> mImages = new ArrayList<>();
     private Context mContext;
 
-    public RecyclerViewAdapter(ArrayList<String> mImageTitles, ArrayList<String> mImages, Context mContext) {
+    public RecyclerViewAdapter(Context mContext, ArrayList<String> mImageTitles, ArrayList<String> mImages) {
+        this.mContext = mContext;
         this.mImageTitles = mImageTitles;
         this.mImages = mImages;
-        this.mContext = mContext;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

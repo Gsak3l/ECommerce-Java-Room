@@ -16,6 +16,7 @@ public class AdminNewProductActivity extends AppCompatActivity {
     private ArrayList<String> mImageUrls = new ArrayList<>();
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,27 +28,30 @@ public class AdminNewProductActivity extends AppCompatActivity {
     }
 
     private void initImageBitmaps() {
-        mImageUrls.add("https://i.ibb.co/nmHhCSd/1959wallpaper.png");
-        mTitles.add("1");
+        if (categoryName.equals("T-Shirts for Men")) {
+            mImageUrls.add("https://images.asos-media.com/products/nike-jordan-jumpan-box-logo-t-shirt-in-black/14027859-1-black?$XXL$&wid=513&fit=constrain");
+            mTitles.add("Nike Jordan Jumpan box logo t-shirt in black");
 
-        mImageUrls.add("https://i.ibb.co/GWsQnWf/A-Light-in-the-Evening.png");
-        mTitles.add("2");
+            mImageUrls.add("https://images.asos-media.com/products/nike-jordan-jumpan-t-shirt-in-white/14027889-1-white?$XXL$&wid=513&fit=constrain");
+            mTitles.add("Nike Jordan Jumpan t-shirt in white");
 
-        mImageUrls.add("https://i.ibb.co/nRc3gcK/Autumn-Sale-Store-Header.png");
-        mTitles.add("3");
+            mImageUrls.add("https://images.asos-media.com/products/nike-running-miler-t-shirt-in-stone-jacquard/14036849-1-beige?$XXL$&wid=513&fit=constrain");
+            mTitles.add("Nike Running Miler t-shirt in stone jacquard");
 
-        mImageUrls.add("https://i.ibb.co/PQVzDWF/Baby-Yoda-and-Pikachu.png");
-        mTitles.add("4");
+            mImageUrls.add("https://images.asos-media.com/products/asos-design-organic-t-shirt-with-crew-neck-in-white/13112623-1-white?$XXL$&wid=513&fit=constrain");
+            mTitles.add("organic t-shirt with crew neck in white");
 
-        mImageUrls.add("https://i.ibb.co/kJdR7KQ/black-raven.jpg");
-        mTitles.add("5");
+            mImageUrls.add("https://images.asos-media.com/products/asos-design-organic-t-shirt-with-crew-neck-in-black/13112617-1-black?$XXL$&wid=513&fit=constrain");
 
-        initRecyclerView();
+            mTitles.add("organic t-shirt with crew neck in black");
+
+            initRecyclerView();
+        }
     }
 
     private void initRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mTitles, mImageUrls, this);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mTitles, mImageUrls);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
