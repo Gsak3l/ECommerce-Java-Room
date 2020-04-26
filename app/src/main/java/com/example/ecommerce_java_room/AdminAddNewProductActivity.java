@@ -14,6 +14,5 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_new_product);
         product_category_spinner = (MaterialSpinner) findViewById(R.id.spinner);
-        product_category_spinner
     }
 }
