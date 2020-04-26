@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
+
+import com.rey.material.widget.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -14,7 +18,7 @@ public class AdminNewProductActivity extends AppCompatActivity {
     private String categoryName;
     private ArrayList<String> mTitles = new ArrayList<>();
     private ArrayList<String> mImageUrls = new ArrayList<>();
-
+    private com.google.android.material.floatingactionbutton.FloatingActionButton addNewProduct;
 
 
     @Override
@@ -24,7 +28,14 @@ public class AdminNewProductActivity extends AppCompatActivity {
         categoryName = getIntent().getExtras().get("category").toString();
         Toast.makeText(this, categoryName, Toast.LENGTH_SHORT).show();
         initImageBitmaps();
-
+        addNewProduct = (com.google.android.material.floatingactionbutton.FloatingActionButton) findViewById(R.id.admin_add_new_product_button);
+        addNewProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent login = new Intent(AdminNewProductActivity.this, AdminAddNewProductActivity.class);
+                startActivity(login);
+            }
+        });
     }
 
     private void initImageBitmaps() {
