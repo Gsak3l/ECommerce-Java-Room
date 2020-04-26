@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".AdminAddNewProductActivity">
 
+    <!--TITLE-->
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/new_product_page_textView"
         android:layout_width="match_parent"
@@ -17,12 +18,17 @@
         android:textSize="22dp"
         android:textStyle="bold" />
 
+    <!--URL OF THE IMAGE-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/add_new_product_imageURL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:paddingRight="20dp"
+        android:textColorHint="@color/colorPrimary"
+        app:hintTextColor="@color/colorPrimary"
+
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -31,12 +37,16 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+
+    <!--NAME OF THE PRODUCT-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/add_new_product_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:paddingRight="20dp"
+        android:textColorHint="@color/colorPrimary"
+        app:hintTextColor="@color/colorPrimary">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -45,10 +55,23 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.jaredrummler.materialspinner.MaterialSpinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
+    <!--PRODUCT TYPE-->
+    <com.jaredrummler.materialspinner.MaterialSpinner
+        android:id="@+id/add_new_product_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:padding="20dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        app:ms_background_color="#FAFAFA"
+        app:ms_hintTextSize="30dp" />
+
+    <TextView
+        android:id="@+id/live_tester"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="i am here and alive"/>
 
 </LinearLayout>
