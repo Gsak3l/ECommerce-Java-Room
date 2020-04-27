@@ -2,6 +2,7 @@ package com.example.ecommerce_java_room;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,7 +11,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
@@ -31,6 +34,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
     TextInputLayout productPrice;
     TextView live_tester;
     List<String> typesAvailable = new ArrayList<>();
+    FloatingActionButton confirmAddProductButton;
 
 
     @Override
@@ -57,36 +61,35 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         productQuantity = findViewById(R.id.add_new_product_quantity);
         productPrice = findViewById(R.id.add_new_product_price);
         productTypeSpinner = findViewById(R.id.add_new_product_category);
+        confirmAddProductButton = findViewById(R.id.add_new_product_confirm_button);
 
-        productTitle.getEditText().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                live_tester.setText(productTitle.getEditText().getText());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                live_tester.setText(productTitle.getEditText().getText());
-            }
-        });
 
         ArrayAdapter products = new ArrayAdapter(this, android.R.layout.simple_spinner_item, typesAvailable);
         products.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         productTypeSpinner.setAdapter(products);
 
-        productTypeSpinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
+        confirmAddProductButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String toastme = productURL.getEditText().getText() +  " "
+                        + productTitle.getEditText().getText() + " "
+                        + productQuantity.getEditText().getText() + " "
+                        + productPrice.getEditText().getText() + " "
+                        + typesAvailable.get(productTypeSpinner.getSelectedIndex());
+                Toast.makeText(AdminAddNewProductActivity.this, toastme, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        /*productTypeSpinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
 
             @Override
             public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
                 live_tester.setText(item);
             }
         });
-
+        */
 
     }
 }
