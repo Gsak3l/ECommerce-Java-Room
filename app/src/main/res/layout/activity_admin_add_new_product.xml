@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,71 +7,128 @@
     android:orientation="vertical"
     tools:context=".AdminAddNewProductActivity">
 
-    <!--TITLE-->
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/new_product_page_textView"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="20dp"
-        android:text="Adding a new Product"
-        android:textAlignment="center"
-        android:textSize="22dp"
-        android:textStyle="bold" />
-
-    <!--URL OF THE IMAGE-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/add_new_product_imageURL"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:textColorHint="@color/colorPrimary"
-        app:hintTextColor="@color/colorPrimary"
-
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Product's Image URL" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <!--NAME OF THE PRODUCT-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/add_new_product_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:textColorHint="@color/colorPrimary"
-        app:hintTextColor="@color/colorPrimary">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Product Title" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <!--PRODUCT TYPE-->
-    <com.jaredrummler.materialspinner.MaterialSpinner
-        android:id="@+id/add_new_product_category"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:padding="20dp"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        app:ms_background_color="#FAFAFA"
-        app:ms_hintTextSize="30dp" />
-
-    <TextView
-        android:id="@+id/live_tester"
-        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="i am here and alive"/>
+        android:orientation="vertical">
 
-</LinearLayout>
+        <!--TITLE OF THE PAGE-->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/new_product_page_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:text="Adding a new Product"
+            android:textAlignment="center"
+            android:textSize="22dp"
+            android:textStyle="bold" />
+
+        <!--URL OF THE IMAGE-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_new_product_imageURL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColorHint="@color/colorPrimary"
+            app:hintTextColor="@color/colorPrimary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Product Image URL" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!--TITLE OF THE PRODUCT-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_new_product_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColorHint="@color/colorPrimary"
+            app:hintTextColor="@color/colorPrimary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Product Title" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!--PRODUCT TYPE-->
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/add_new_product_category"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            app:ms_background_color="#FAFAFA"
+            app:ms_hintTextSize="30dp" />
+
+
+        <!--PRODUCT QUANTITY-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_new_product_quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColorHint="@color/colorPrimary"
+            app:hintTextColor="@color/colorPrimary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Product Quantity" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!--PRODUCT PRICE-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_new_product_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColorHint="@color/colorPrimary"
+            app:hintTextColor="@color/colorPrimary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Product Price" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!--JUST A BETA TESTER-->
+        <TextView
+            android:id="@+id/live_tester"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="i am here and alive"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+    <!--FLOATING BUTTON FOR THE CONFIRMATION-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_new_product_confirm_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:src="@drawable/check_icon_white_24dp"
+        app:backgroundTint="@color/colorPrimary" />
+</RelativeLayout>
