@@ -36,12 +36,12 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
     private MaterialSpinner productTypeSpinner;
     private TextInputLayout productQuantity;
     private TextInputLayout productPrice;
-    private TextView live_tester;
     private List<String> typesAvailable = new ArrayList<>();
     FloatingActionButton confirmAddProductButton;
 
     //database stuff
     private ProductDAO productDAO;
+    private ProductDatabase productDatabase;
 
 
     @Override
@@ -72,7 +72,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         confirmAddProductButton = findViewById(R.id.add_new_product_confirm_button);
 
         //giving the available values of the typesAvailable list to the spinner
-        ArrayAdapter products = new ArrayAdapter(this, android.R.layout.simple_spinner_item, typesAvailable);
+        final ArrayAdapter products = new ArrayAdapter(this, android.R.layout.simple_spinner_item, typesAvailable);
         products.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         productTypeSpinner.setAdapter(products);
 
@@ -83,34 +83,42 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         confirmAddProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String toastme = "Please Fill all the Available Fields";
+                String toastText = "Please Fill all the Available Fields";
+                List<Product> products = productDAO.getAllProducts();
+                System.out.println(products.size());
                 if (!productURL.getEditText().getText().toString().trim().matches("") &&
                         !productTitle.getEditText().getText().toString().trim().matches("") &&
                         !productPrice.getEditText().getText().toString().trim().matches("") &&
                         !productQuantity.getEditText().getText().toString().trim().matches("")) {
-                    toastme = productURL.getEditText().getText().toString() + " "
-                            + productTitle.getEditText().getText().toString() + " "
-                            + productQuantity.getEditText().getText().toString() + " "
-                            + productPrice.getEditText().getText().toString() + " "
-                            + typesAvailable.get(productTypeSpinner.getSelectedIndex());
 
                     try {
-                        Integer.parseInt(productQuantity.getEditText().getText().toString().trim());
+                        String URL = productURL.getEditText().getText().toString().trim();
+                        String title = productTitle.getEditText().getText().toString().trim();
+                        int quantity = Integer.parseInt(productQuantity.getEditText().getText().toString().trim());
+                        double price = Double.parseDouble(productPrice.getEditText().getText().toString().trim());
+                        String category = typesAvailable.get(productTypeSpinner.getSelectedIndex());
+                        Product product = new Product(URL, title, quantity, price, category);
+                        productDAO.insert(product);
+                        toastText = "Product Created Successfully!";
+
+                        //blanking the fields after the product has been created
+                        productURL.getEditText().setText("");
+                        productTitle.getEditText().setText("");
+                        productQuantity.getEditText().setText("");
+                        productPrice.getEditText().setText("");
+                        productTypeSpinner.setSelectedIndex(0);
+
+                        products = productDAO.getAllProducts();
+                        System.out.println(products.size());
+                        System.out.println(products.get(0).getCategory());
+
                     } catch (NumberFormatException e) {
-                        Toast.makeText(AdminAddNewProductActivity.this, "Quantity is usually a number", Toast.LENGTH_LONG).show();
+                        toastText = "Give the Right Values at the Given Fields";
                     }
 
                 }
-                Toast.makeText(AdminAddNewProductActivity.this, toastme, Toast.LENGTH_LONG).show();
+                Toast.makeText(AdminAddNewProductActivity.this, toastText, Toast.LENGTH_LONG).show();
             }
         });
     }
-
-    /*productTypeSpinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
-        @Override
-        public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-            live_tester.setText(item);
-        }
-     });*/
-
 }

@@ -24,8 +24,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText loginPassword;
 
     //initializing our database stuff
-    UserDAO db;
-    UserDatabase database;
+    private UserDAO userDAO;
+    private UserDatabase database;
 
 
     @Override
@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         //getting our database
         database = Room.databaseBuilder(this, UserDatabase.class, "User")
                 .allowMainThreadQueries().build();
-        db = database.getUserDao();
+        userDAO = database.getUserDao();
 
         //trying to log in with the given credentials
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -52,16 +52,21 @@ public class LoginActivity extends AppCompatActivity {
                 String password = loginPassword.getText().toString().trim();
 
                 //finding out if the user exists in our database or if the user is the admin
-                User user = db.getUser(email, password);
+                User user = userDAO.getUser(email, password);
                 if (email.equals("admin") && password.equals("admin")) {
                     Intent i = new Intent(LoginActivity.this, AdminCategoryActivity.class);
                     startActivity(i);
                 } else if (user != null) {
                     Intent i = new Intent(LoginActivity.this, AdminCategoryActivity.class);
                     startActivity(i);
+                } else {
+                    Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+                    startActivity(i);
+                    Toast.makeText(LoginActivity.this, "Those Credentials not Match any Users. Create a new Account!",
+                            Toast.LENGTH_LONG).show();
                 }
                 //limit testing
-                List<User> users = db.getAllUsers();
+                List<User> users = userDAO.getAllUsers();
                 System.out.println(users.size());
             }
         });

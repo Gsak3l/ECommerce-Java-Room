@@ -40,8 +40,6 @@ public class AdminNewProductActivity extends AppCompatActivity {
 
     private void initImageBitmaps() {
         if (categoryName.equals("T-Shirts for Men")) {
-            mImageUrls.add("https://images.asos-media.com/products/nike-jordan-jumpan-box-logo-t-shirt-in-black/14027859-1-black?$XXL$&wid=513&fit=constrain");
-            mTitles.add("Nike Jordan Jumpan box logo t-shirt in black");
 
             mImageUrls.add("https://images.asos-media.com/products/nike-jordan-jumpan-t-shirt-in-white/14027889-1-white?$XXL$&wid=513&fit=constrain");
             mTitles.add("Nike Jordan Jumpan t-shirt in white");
