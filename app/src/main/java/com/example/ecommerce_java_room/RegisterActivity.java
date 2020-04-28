@@ -37,11 +37,13 @@ public class RegisterActivity extends AppCompatActivity {
         registerEmail = (EditText) findViewById(R.id.register_email);
         registerPassword = (EditText) findViewById(R.id.register_password);
 
+        //allowing queries
         userDAO = Room.databaseBuilder(this, UserDatabase.class, "User")
                 .allowMainThreadQueries().build().getUserDao();
         createAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //trim removes the leading and trailing spaces
                 String email = registerEmail.getText().toString().trim();
                 String fullName = registerFullName.getText().toString().trim();
                 String password = registerPassword.getText().toString().trim();
