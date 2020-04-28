@@ -15,23 +15,33 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-    private static final String TAG = "RecyclerViewAdapter";
 
+    //minimizing the decimal length of a double
+    DecimalFormat df = new DecimalFormat();
+
+    private static final String TAG = "RecyclerViewAdapter";
     private ArrayList<String> mImageTitles = new ArrayList<>();
     private ArrayList<String> mImages = new ArrayList<>();
+    private ArrayList<Integer> mQuantity = new ArrayList<>();
+    private ArrayList<Double> mPrice = new ArrayList<>();
     private Context mContext;
 
-    public RecyclerViewAdapter(Context mContext, ArrayList<String> mImageTitles, ArrayList<String> mImages) {
+    public RecyclerViewAdapter(Context mContext, ArrayList<String> mImages, ArrayList<String> mImageTitles,
+                               ArrayList<Integer> mQuantity, ArrayList<Double> mPrice) {
         this.mContext = mContext;
         this.mImageTitles = mImageTitles;
         this.mImages = mImages;
+        this.mQuantity = mQuantity;
+        this.mPrice = mPrice;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        //initializing all the elements
         ImageView recyclerViewProductImage;
         TextView recyclerViewProductPrice;
         TextView recyclerViewProductQuantity;
@@ -39,6 +49,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         RelativeLayout recyclerViewParentLayout;
         TextView recyclerViewProductTitle;
 
+        //getting the xml elements
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             recyclerViewProductImage = itemView.findViewById(R.id.recycler_view_product_image);
@@ -51,7 +62,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @NonNull
-    @Override
+    @Override //not sure what this does
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_list_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
@@ -60,11 +71,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        df.setMinimumFractionDigits(2); //minimum number of decimal digits
         Glide.with(mContext).asBitmap().load(mImages.get(position)).into(holder.recyclerViewProductImage);
         holder.recyclerViewProductTitle.setText(mImageTitles.get(position));
-        holder.recyclerViewParentLayout.setOnClickListener(new View.OnClickListener() {
+        holder.recyclerViewProductQuantity.setText("Pieces Available: " + mQuantity.get(position));
+        holder.recyclerViewProductPrice.setText(df.format(mPrice.get(position)) + "$"); //two decimal digits
+                holder.recyclerViewParentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //onclick it does stuff
                 Toast.makeText(mContext, mImageTitles.get(position), Toast.LENGTH_SHORT).show();
             }
         });
