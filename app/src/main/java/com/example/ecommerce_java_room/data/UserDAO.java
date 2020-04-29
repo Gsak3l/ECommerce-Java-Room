@@ -1,6 +1,7 @@
 package com.example.ecommerce_java_room.data;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -19,4 +20,7 @@ public interface UserDAO {
 
     @Query("SELECT * FROM User")
     List<User> getAllUsers();
+
+    @Query("DELETE FROM User WHERE email = :email")
+    void deleteUserEmail(String email);
 }

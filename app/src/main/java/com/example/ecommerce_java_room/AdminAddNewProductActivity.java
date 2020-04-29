@@ -50,7 +50,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_add_new_product);
 
         //adding available categories to our product spinner
-        typesAvailable.add("T Shirts for Men");
+        typesAvailable.add("T-Shirts for Men");
         typesAvailable.add("Trousers for Men");
         typesAvailable.add("Sweaters for Men");
         typesAvailable.add("Shoes for Men");

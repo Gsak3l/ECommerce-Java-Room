@@ -28,15 +28,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> mImages = new ArrayList<>();
     private ArrayList<Integer> mQuantity = new ArrayList<>();
     private ArrayList<Double> mPrice = new ArrayList<>();
+    private ArrayList<Integer> mCode = new ArrayList<>();
     private Context mContext;
 
     public RecyclerViewAdapter(Context mContext, ArrayList<String> mImages, ArrayList<String> mImageTitles,
-                               ArrayList<Integer> mQuantity, ArrayList<Double> mPrice) {
+                               ArrayList<Integer> mQuantity, ArrayList<Double> mPrice, ArrayList<Integer> mCode) {
         this.mContext = mContext;
         this.mImageTitles = mImageTitles;
         this.mImages = mImages;
         this.mQuantity = mQuantity;
         this.mPrice = mPrice;
+        this.mCode = mCode;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -76,6 +78,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.recyclerViewProductTitle.setText(mImageTitles.get(position));
         holder.recyclerViewProductQuantity.setText("Pieces Available: " + mQuantity.get(position));
         holder.recyclerViewProductPrice.setText(df.format(mPrice.get(position)) + "$"); //two decimal digits
+        holder.recyclerViewProductCode.setText("Product Code: " + mCode.get(position));
                 holder.recyclerViewParentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

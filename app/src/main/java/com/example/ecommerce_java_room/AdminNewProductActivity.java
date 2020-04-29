@@ -26,6 +26,7 @@ public class AdminNewProductActivity extends AppCompatActivity {
     private ArrayList<String> productImageUrl = new ArrayList<>();
     private ArrayList<Integer> productQuantity = new ArrayList<>();
     private ArrayList<Double> productPrice = new ArrayList<>();
+    private ArrayList<Integer> productCode = new ArrayList<>();
 
     private com.google.android.material.floatingactionbutton.FloatingActionButton addNewProduct;
 
@@ -33,6 +34,9 @@ public class AdminNewProductActivity extends AppCompatActivity {
     private ProductDAO productDAO;
     private ProductDatabase productDatabase;
     List<Product> products = new ArrayList<>();
+
+    //onetime stuff
+    boolean flag = true;
 
 
     @Override
@@ -55,20 +59,28 @@ public class AdminNewProductActivity extends AppCompatActivity {
     }
 
     private void initImageBitmaps() {
-        products = productDAO.getAllProducts();
-        System.out.println(products.size());
+        /*deleting all products
+        if(flag) {
+            productDAO.getAllProducts().size();
+            productDAO.deleteAllProducts();
+            productDAO.getAllProducts().size();
+            flag = false;
+        }*/
+        products = productDAO.getProductsByCategory(categoryName);
         for (int i = 0; i < products.size(); i++) {
             productImageUrl.add(products.get(i).getImageURL());
             productTitles.add(products.get(i).getTitle());
             productQuantity.add(products.get(i).getQuantity());
             productPrice.add(products.get(i).getPrice());
+            productCode.add(products.get(i).getId());
         }
         initRecyclerView();
     }
 
     private void initRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, productImageUrl, productTitles, productQuantity, productPrice);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, productImageUrl, productTitles,
+                productQuantity, productPrice, productCode);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
