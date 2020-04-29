@@ -106,7 +106,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
                         productTitle.getEditText().setText("");
                         productQuantity.getEditText().setText("");
                         productPrice.getEditText().setText("");
-                        productTypeSpinner.setSelectedIndex(0);
+                        //productTypeSpinner.setSelectedIndex(0);
 
                         products = productDAO.getAllProducts();
                         System.out.println(products.size());

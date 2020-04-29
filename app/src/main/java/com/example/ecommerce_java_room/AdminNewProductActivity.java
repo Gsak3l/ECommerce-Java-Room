@@ -66,6 +66,7 @@ public class AdminNewProductActivity extends AppCompatActivity {
             productDAO.getAllProducts().size();
             flag = false;
         }*/
+        productDAO.deleteProduct(26);
         products = productDAO.getProductsByCategory(categoryName);
         for (int i = 0; i < products.size(); i++) {
             productImageUrl.add(products.get(i).getImageURL());
