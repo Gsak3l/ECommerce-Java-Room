@@ -35,4 +35,8 @@ public interface ProductDAO {
     //delete all products
     @Query("DELETE FROM Product")
     void deleteAllProducts();
+
+    //change the category of a product by id because i made so many mistakes when adding them
+    @Query("UPDATE Product SET category = :category WHERE id = :id")
+    void updateCategory(int id, String category);
 }
