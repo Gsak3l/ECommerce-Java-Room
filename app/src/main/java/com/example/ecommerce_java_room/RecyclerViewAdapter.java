@@ -1,6 +1,7 @@
 package com.example.ecommerce_java_room;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -79,15 +79,26 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.recyclerViewProductQuantity.setText("Pieces Available: " + mQuantity.get(position));
         holder.recyclerViewProductPrice.setText(df.format(mPrice.get(position)) + "$"); //two decimal digits
         holder.recyclerViewProductCode.setText("Product Code: " + mCode.get(position));
-                holder.recyclerViewParentLayout.setOnClickListener(new View.OnClickListener() {
+        holder.recyclerViewParentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //onclick it does stuff
                 Toast.makeText(mContext, mImageTitles.get(position), Toast.LENGTH_SHORT).show();
             }
         });
-    }
+        //editing or deleting an item
+        holder.recyclerViewParentLayout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intent = new Intent(mContext, AdminAddNewProductActivity.class);
+                intent.putExtra("id", mCode.get(position));
+                mContext.startActivity(intent);
+                return true;
+            }
+        });
 
+
+    }
     @Override
     public int getItemCount() {
         return mImageTitles.size();
