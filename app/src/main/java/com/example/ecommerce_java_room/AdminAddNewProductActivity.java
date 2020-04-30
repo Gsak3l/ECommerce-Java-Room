@@ -144,7 +144,6 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         deleteProductButton.setVisibility(View.VISIBLE);
         //getting the product from our database using the id
         Product product = productDAO.getProduct(id);
-        productDAO.deleteProduct(id);
         //setting the product editTextTextAreas with the product values
         productURL.getEditText().setText(product.getImageURL());
         productTitle.getEditText().setText(product.getTitle());
