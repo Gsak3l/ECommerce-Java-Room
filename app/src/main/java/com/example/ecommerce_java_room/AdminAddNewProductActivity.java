@@ -46,7 +46,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
     private ProductDatabase productDatabase;
 
     //other
-    int editById;
+    private int editById;
 
 
     @Override
@@ -64,7 +64,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         typesAvailable.add("Skirts for Women");
         typesAvailable.add("Shoes for Women");
         typesAvailable.add("Hats");
-        typesAvailable.add("Purses");
+        typesAvailable.add("Purses&Bags");
         typesAvailable.add("Watches");
         typesAvailable.add("Scarfs");
 
