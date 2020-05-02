@@ -54,20 +54,17 @@ public class LoginActivity extends AppCompatActivity {
                 //finding out if the user exists in our database or if the user is the admin
                 User user = userDAO.getUser(email, password);
                 if (email.equals("admin") && password.equals("admin")) {
-                    Intent i = new Intent(LoginActivity.this, AdminCategoryActivity.class);
+                    Intent i = new Intent(LoginActivity.this, MainMenuActivity.class);
                     startActivity(i);
                 } else if (user != null) {
-                    Intent i = new Intent(LoginActivity.this, AdminCategoryActivity.class);
+                    Intent i = new Intent(LoginActivity.this, MainMenuActivity.class);
                     startActivity(i);
                 } else {
-                    Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+                    Intent i = new Intent(LoginActivity.this, MainMenuActivity.class);
                     startActivity(i);
                     Toast.makeText(LoginActivity.this, "Those Credentials not Match any Users. Create a new Account!",
                             Toast.LENGTH_LONG).show();
                 }
-                //limit testing
-                List<User> users = userDAO.getAllUsers();
-                System.out.println(users.size());
             }
         });
     }
