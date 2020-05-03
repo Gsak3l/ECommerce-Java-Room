@@ -23,4 +23,7 @@ public interface UserDAO {
 
     @Query("DELETE FROM User WHERE email = :email")
     void deleteUserEmail(String email);
+
+    @Query("SELECT FROM User WHERE email =:email")
+    User getUserEmail(String email);
 }

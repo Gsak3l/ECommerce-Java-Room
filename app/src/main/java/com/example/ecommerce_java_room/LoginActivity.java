@@ -50,21 +50,25 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = loginEmail.getText().toString().trim();
                 String password = loginPassword.getText().toString().trim();
-
+                Intent intent = new Intent(LoginActivity.this, LoginActivity.class);
                 //finding out if the user exists in our database or if the user is the admin
                 User user = userDAO.getUser(email, password);
                 if (email.equals("admin") && password.equals("admin")) {
-                    Intent i = new Intent(LoginActivity.this, MainMenuActivity.class);
-                    startActivity(i);
+                    intent = new Intent(LoginActivity.this, MainMenuActivity.class);
+                    intent.putExtra("type", "admin");
                 } else if (user != null) {
-                    Intent i = new Intent(LoginActivity.this, MainMenuActivity.class);
-                    startActivity(i);
+                    intent = new Intent(LoginActivity.this, MainMenuActivity.class);
+                    intent.putExtra("type", user);
+                } else if(userDAO.getUserEmail(email) != null){
+                    Toast.makeText(LoginActivity.this, "Incorrect Password!",  Toast.LENGTH_LONG).show();
                 } else {
-                    Intent i = new Intent(LoginActivity.this, MainMenuActivity.class);
-                    startActivity(i);
-                    Toast.makeText(LoginActivity.this, "Those Credentials not Match any Users. Create a new Account!",
+                    Toast.makeText(LoginActivity.this, "Those Credentials do not match any User. Sign Up Now!",
                             Toast.LENGTH_LONG).show();
+                    intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 }
+                loginEmail.setText("");
+                loginPassword.setText("");
+                startActivity(intent);
             }
         });
     }

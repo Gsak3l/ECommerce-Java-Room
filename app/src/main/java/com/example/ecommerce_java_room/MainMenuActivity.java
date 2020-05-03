@@ -24,11 +24,15 @@ public class MainMenuActivity extends AppCompatActivity {
     private ImageView accessories_scarf;
     private ImageView accessories_hat;
     private ImageView accessories_watch;
+    //other
+    private String userType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        userType = getIntent().getExtras().get("type").toString();
+
 
         //giving reference to all the ImageViews of our xml
         male_t_shirts = (ImageView) findViewById(R.id.male_tshirts);
@@ -53,6 +57,7 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenuActivity.this, AdminNewProductActivity.class);
                 intent.putExtra("category", "T-Shirts for Men");  //passing to the AdminNewProductActivity.java the category with the name x
+                intent.putExtra("userType", userType);
                 startActivity(intent);
             }
         });
@@ -62,6 +67,8 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenuActivity.this, AdminNewProductActivity.class);
                 intent.putExtra("category", "Trousers for Men"); //passing to the AdminNewProductActivity.java the category with the name x
+                intent.putExtra("userType", userType);
+                intent.putExtra("userType", userType);
                 startActivity(intent);
             }
         });
@@ -71,6 +78,8 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenuActivity.this, AdminNewProductActivity.class);
                 intent.putExtra("category", "Sweaters for Men"); //passing to the AdminNewProductActivity.java the category with the name x
+                intent.putExtra("userType", userType);
+                intent.putExtra("userType", userType);
                 startActivity(intent);
             }
         });
@@ -80,6 +89,8 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenuActivity.this, AdminNewProductActivity.class);
                 intent.putExtra("category", "Shoes for Men"); //passing to the AdminNewProductActivity.java the category with the name x
+                intent.putExtra("userType", userType);
+                intent.putExtra("userType", userType);
                 startActivity(intent);
             }
         });
@@ -93,6 +104,8 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenuActivity.this, AdminNewProductActivity.class);
                 intent.putExtra("category", "Dresses for Women"); //passing to the AdminNewProductActivity.java the category with the name x
+                intent.putExtra("userType", userType);
+                intent.putExtra("userType", userType);
                 startActivity(intent);
             }
         });
@@ -102,6 +115,7 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenuActivity.this, AdminNewProductActivity.class);
                 intent.putExtra("category", "Trousers for Women"); //passing to the AdminNewProductActivity.java the category with the name x
+                intent.putExtra("userType", userType);
                 startActivity(intent);
             }
         });
@@ -111,6 +125,7 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenuActivity.this, AdminNewProductActivity.class);
                 intent.putExtra("category", "Skirts for Women"); //passing to the AdminNewProductActivity.java the category with the name x
+                intent.putExtra("userType", userType);
                 startActivity(intent);
             }
         });
@@ -120,6 +135,7 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenuActivity.this, AdminNewProductActivity.class);
                 intent.putExtra("category", "Shoes for Women"); //passing to the AdminNewProductActivity.java the category with the name x
+                intent.putExtra("userType", userType);
                 startActivity(intent);
             }
         });
@@ -133,25 +149,27 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenuActivity.this, AdminNewProductActivity.class);
                 intent.putExtra("category", "Hats"); //passing to the AdminNewProductActivity.java the category with the name x
+                intent.putExtra("userType", userType);
                 startActivity(intent);
             }
         });
         //male watch onclick listener
-        //male sunglasses onclick listener
         accessories_watch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenuActivity.this, AdminNewProductActivity.class);
                 intent.putExtra("category", "Watches"); //passing to the AdminNewProductActivity.java the category with the name x
+                intent.putExtra("userType", userType);
                 startActivity(intent);
             }
         });
-        //accessory purse onclick listener
+        //accessory purse-bag onclick listener
         accessories_bag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenuActivity.this, AdminNewProductActivity.class);
                 intent.putExtra("category", "Purses&Bags"); //passing to the AdminNewProductActivity.java the category with the name x
+                intent.putExtra("userType", userType);
                 startActivity(intent);
             }
         });
@@ -161,6 +179,7 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenuActivity.this, AdminNewProductActivity.class);
                 intent.putExtra("category", "Scarfs"); //passing to the AdminNewProductActivity.java the category with the name x
+                intent.putExtra("userType", userType);
                 startActivity(intent);
             }
         });
