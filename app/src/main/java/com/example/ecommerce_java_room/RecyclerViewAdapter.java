@@ -30,6 +30,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<Double> mPrice = new ArrayList<>();
     private ArrayList<Integer> mCode = new ArrayList<>();
     private Context mContext;
+    private String userType;
 
     public RecyclerViewAdapter(Context mContext, ArrayList<String> mImages, ArrayList<String> mImageTitles,
                                ArrayList<Integer> mQuantity, ArrayList<Double> mPrice, ArrayList<Integer> mCode) {
@@ -39,6 +40,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.mQuantity = mQuantity;
         this.mPrice = mPrice;
         this.mCode = mCode;
+        userType = "user";
+    }
+    public RecyclerViewAdapter(Context mContext, ArrayList<String> mImages, ArrayList<String> mImageTitles, ArrayList<Double> mPrice) {
+        this.mContext = mContext;
+        this.mImages = mImages;
+        this.mPrice = mPrice;
+        userType = "admin";
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -66,7 +74,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override //not sure what this does
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_list_item_admin, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }

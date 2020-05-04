@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                     intent.putExtra("type", "admin");
                 } else if (user != null) {
                     intent = new Intent(LoginActivity.this, MainMenuActivity.class);
-                    intent.putExtra("type", user);
+                    intent.putExtra("type", "user");
                 } else if(userDAO.getUserEmail(email) != null){
                     Toast.makeText(LoginActivity.this, "Incorrect Password!",  Toast.LENGTH_LONG).show();
                 } else {

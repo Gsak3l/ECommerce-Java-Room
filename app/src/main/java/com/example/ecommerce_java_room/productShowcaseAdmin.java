@@ -13,15 +13,13 @@ import android.widget.Toast;
 import com.example.ecommerce_java_room.data.ProductDAO;
 import com.example.ecommerce_java_room.data.ProductDatabase;
 import com.example.ecommerce_java_room.model.Product;
-import com.rey.material.widget.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminNewProductActivity extends AppCompatActivity {
+public class productShowcaseAdmin extends AppCompatActivity {
 
     //lists used to fill the recycler from our database
-    private String categoryName;
     private ArrayList<String> productTitles = new ArrayList<>();
     private ArrayList<String> productImageUrl = new ArrayList<>();
     private ArrayList<Integer> productQuantity = new ArrayList<>();
@@ -35,30 +33,32 @@ public class AdminNewProductActivity extends AppCompatActivity {
     private ProductDatabase productDatabase;
     List<Product> products = new ArrayList<>();
 
-    //onetime stuff
+    //other stuff
     boolean flag = true;
-
+    private String categoryName;
+    private String userType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_new_product);
+        setContentView(R.layout.product_showcase_admin);
         categoryName = getIntent().getExtras().get("category").toString();
+        userType = getIntent().getExtras().get("userType").toString();
         Toast.makeText(this, categoryName, Toast.LENGTH_SHORT).show();
         productDAO = Room.databaseBuilder(this, ProductDatabase.class, "Product")
                 .allowMainThreadQueries().build().getProductDao();
-        initImageBitmaps();
+        initImageBitmaps(userType);
         addNewProduct = (com.google.android.material.floatingactionbutton.FloatingActionButton) findViewById(R.id.admin_add_new_product_button);
         addNewProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent login = new Intent(AdminNewProductActivity.this, AdminAddNewProductActivity.class);
+                Intent login = new Intent(productShowcaseAdmin.this, AdminAddNewProductActivity.class);
                 startActivity(login);
             }
         });
     }
 
-    private void initImageBitmaps() {
+    private void initImageBitmaps(String userType) {
         /*deleting all products
         if(flag) {
             productDAO.getAllProducts().size();
@@ -68,7 +68,6 @@ public class AdminNewProductActivity extends AppCompatActivity {
         }*/
         //productDAO.updateCategory(49, "Dresses for Women");
 
-
         products = productDAO.getProductsByCategory(categoryName);
         for (int i = 0; i < products.size(); i++) {
             productImageUrl.add(products.get(i).getImageURL());
@@ -77,15 +76,21 @@ public class AdminNewProductActivity extends AppCompatActivity {
             productPrice.add(products.get(i).getPrice());
             productCode.add(products.get(i).getId());
         }
-        initRecyclerView();
+        initRecyclerView(userType);
     }
 
-    private void initRecyclerView() {
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, productImageUrl, productTitles,
-                productQuantity, productPrice, productCode);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+    private void initRecyclerView(String userType) {
+        if (userType.equals("admin")) {
+            RecyclerView recyclerView = findViewById(R.id.recycler_view);
+            RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, productImageUrl, productTitles,
+                    productQuantity, productPrice, productCode);
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        } /*else if (userType.equals("user")) {
+            RecyclerView recyclerView = findViewById(R.id.recycler_view);
+            RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, productImageUrl, productTitles, productPrice);
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        }*/
     }
 }
