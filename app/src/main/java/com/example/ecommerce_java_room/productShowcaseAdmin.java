@@ -27,6 +27,8 @@ public class productShowcaseAdmin extends AppCompatActivity {
     private ArrayList<Integer> productCode = new ArrayList<>();
 
     private com.google.android.material.floatingactionbutton.FloatingActionButton addNewProduct;
+    private com.google.android.material.floatingactionbutton.FloatingActionButton basket;
+
 
     //database stuff
     private ProductDAO productDAO;
@@ -49,6 +51,11 @@ public class productShowcaseAdmin extends AppCompatActivity {
                 .allowMainThreadQueries().build().getProductDao();
         initImageBitmaps(userType);
         addNewProduct = (com.google.android.material.floatingactionbutton.FloatingActionButton) findViewById(R.id.admin_add_new_product_button);
+        basket = (com.google.android.material.floatingactionbutton.FloatingActionButton) findViewById(R.id.user_basket_button);
+        if(userType.equals("user")) {
+            basket.setVisibility(View.VISIBLE);
+            addNewProduct.setVisibility(View.INVISIBLE);
+        }
         addNewProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,17 +87,10 @@ public class productShowcaseAdmin extends AppCompatActivity {
     }
 
     private void initRecyclerView(String userType) {
-        if (userType.equals("admin")) {
-            RecyclerView recyclerView = findViewById(R.id.recycler_view);
-            RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, productImageUrl, productTitles,
-                    productQuantity, productPrice, productCode);
-            recyclerView.setAdapter(adapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        } /*else if (userType.equals("user")) {
-            RecyclerView recyclerView = findViewById(R.id.recycler_view);
-            RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, productImageUrl, productTitles, productPrice);
-            recyclerView.setAdapter(adapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        }*/
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, productImageUrl, productTitles,
+                productQuantity, productPrice, productCode, userType);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }

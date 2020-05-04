@@ -2,6 +2,7 @@ package com.example.ecommerce_java_room;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,20 +34,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private String userType;
 
     public RecyclerViewAdapter(Context mContext, ArrayList<String> mImages, ArrayList<String> mImageTitles,
-                               ArrayList<Integer> mQuantity, ArrayList<Double> mPrice, ArrayList<Integer> mCode) {
+                               ArrayList<Integer> mQuantity, ArrayList<Double> mPrice, ArrayList<Integer> mCode, String userType) {
         this.mContext = mContext;
         this.mImageTitles = mImageTitles;
         this.mImages = mImages;
         this.mQuantity = mQuantity;
         this.mPrice = mPrice;
         this.mCode = mCode;
-        userType = "user";
-    }
-    public RecyclerViewAdapter(Context mContext, ArrayList<String> mImages, ArrayList<String> mImageTitles, ArrayList<Double> mPrice) {
-        this.mContext = mContext;
-        this.mImages = mImages;
-        this.mPrice = mPrice;
-        userType = "admin";
+        this.userType = userType;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -104,8 +99,27 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 return true;
             }
         });
-
-
+        if (userType.equals("user")) {
+            //making both product quantity and product code disappear when the user type is used (visible only for admin)
+            holder.recyclerViewProductQuantity.setVisibility(View.INVISIBLE);
+            holder.recyclerViewProductQuantity.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 0);
+            holder.recyclerViewProductCode.setVisibility(View.INVISIBLE);
+            holder.recyclerViewProductCode.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 0);
+            holder.recyclerViewParentLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //onclick it does stuff
+                    Toast.makeText(mContext, "i am a user, not an admin", Toast.LENGTH_SHORT).show();
+                }
+            });
+            holder.recyclerViewParentLayout.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Toast.makeText(mContext, "i am a user, not an admin", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+            });
+        }
     }
 
     @Override
