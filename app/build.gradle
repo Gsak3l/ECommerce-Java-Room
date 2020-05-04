@@ -72,6 +72,10 @@ dependencies {
     //material spinner from ganfra
     implementation 'com.github.ganfra:material-spinner:2.0.0'
 
-    //
+    //material spinner from jared rummler
     implementation 'com.jaredrummler:material-spinner:1.3.1'
+
+    //picasso image
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
 }

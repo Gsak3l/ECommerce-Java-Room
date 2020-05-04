@@ -77,29 +77,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         df.setMinimumFractionDigits(2); //minimum number of decimal digits
+        //loading the images
         Glide.with(mContext).asBitmap().load(mImages.get(position)).into(holder.recyclerViewProductImage);
+        //giving values to the fields
         holder.recyclerViewProductTitle.setText(mImageTitles.get(position));
         holder.recyclerViewProductQuantity.setText("Pieces Available: " + mQuantity.get(position));
         holder.recyclerViewProductPrice.setText(df.format(mPrice.get(position)) + "$"); //two decimal digits
         holder.recyclerViewProductCode.setText("Product Code: " + mCode.get(position));
-        holder.recyclerViewParentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //onclick it does stuff
-                Toast.makeText(mContext, mImageTitles.get(position), Toast.LENGTH_SHORT).show();
-            }
-        });
-        //editing or deleting an item
-        holder.recyclerViewParentLayout.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Intent intent = new Intent(mContext, AdminAddNewProductActivity.class);
-                intent.putExtra("id", mCode.get(position));
-                mContext.startActivity(intent);
-                return true;
-            }
-        });
-        if (userType.equals("user")) {
+
+        if (userType.equals("user")) { //checking if the used who logged in is an admin or just a user
             //making both product quantity and product code disappear when the user type is used (visible only for admin)
             holder.recyclerViewProductQuantity.setVisibility(View.INVISIBLE);
             holder.recyclerViewProductQuantity.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 0);
@@ -109,13 +95,28 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 @Override
                 public void onClick(View v) {
                     //onclick it does stuff
-                    Toast.makeText(mContext, "i am a user, not an admin", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, mImageTitles.get(position), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(mContext, UserProductBuy.class);
+                    intent.putExtra("id", mCode.get(position));
+                    mContext.startActivity(intent);
                 }
             });
+        } else if (userType.equals("admin")) {
+
+            holder.recyclerViewParentLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //onclick it does stuff
+                    Toast.makeText(mContext, mImageTitles.get(position), Toast.LENGTH_SHORT).show();
+                }
+            });
+            //editing or deleting an item
             holder.recyclerViewParentLayout.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    Toast.makeText(mContext, "i am a user, not an admin", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(mContext, AdminAddNewProductActivity.class);
+                    intent.putExtra("id", mCode.get(position));
+                    mContext.startActivity(intent);
                     return true;
                 }
             });
