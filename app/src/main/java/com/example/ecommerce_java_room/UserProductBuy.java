@@ -49,14 +49,12 @@ public class UserProductBuy extends AppCompatActivity {
         productQuantity = findViewById(R.id.user_buy_product_quantity);
         Product product = productDAO.getProduct(id);
         //table that contains all the numbers for the numberPicker
-        String quantity[] = new String[product.getQuantity()];
-        //Toast.makeText(UserProductBuy.this, "i am alive you son of a bitch: " + id, Toast.LENGTH_SHORT).show();
-        for (int i = 0; i < quantity.length; i++) {
-            quantity[i] = "" + i;
-        }
         //giving values to the fields
         productTitle.setText(product.getTitle());
         Picasso.get().load(product.getImageURL()).into(productImage);
-        productQuantity.setDisplayedValues(quantity);
+        productQuantity.setMinValue(0); //setting max and min values for the spinner
+        productQuantity.setMaxValue(product.getQuantity() - 1);
+
+        //Toast.makeText(UserProductBuy.this, "i am alive you son of a bitch: " + id, Toast.LENGTH_SHORT).show();
     }
 }
