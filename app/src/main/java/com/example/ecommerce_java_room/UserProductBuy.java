@@ -19,6 +19,15 @@ import com.bumptech.glide.load.engine.Resource;
 import com.example.ecommerce_java_room.data.ProductDAO;
 import com.example.ecommerce_java_room.data.ProductDatabase;
 import com.example.ecommerce_java_room.model.Product;
+import com.google.android.material.textview.MaterialTextView;
+import com.mikepenz.fontawesome_typeface_library.FontAwesome;
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -60,11 +69,25 @@ public class UserProductBuy extends AppCompatActivity {
         productQuantity.setMinValue(0); //setting max and min values for the spinner
         productQuantity.setMaxValue(product.getQuantity() - 1);
         toolbar = findViewById(R.id.toolbar);
-        setToolbarStuff();
+        //setting up the tool bar
+        PrimaryDrawerItem homeNav = new PrimaryDrawerItem().withName("Home");
+        PrimaryDrawerItem orderHistory = new PrimaryDrawerItem().withName("Order History");
+        setToolbarStuff(homeNav, orderHistory);
         //Toast.makeText(UserProductBuy.this, "i am alive you son of a bitch: " + id, Toast.LENGTH_SHORT).show();
     }
 
-    public void setToolbarStuff() {
+    public void setToolbarStuff(PrimaryDrawerItem homeNav, PrimaryDrawerItem orderHistory) {
         toolbar.setBackground(ResourcesCompat.getDrawable(getResources(), R.color.primary_dark, null));
+        AccountHeader accountHeader = new AccountHeaderBuilder().
+                withActivity(this).withTranslucentStatusBar(true).build();
+        SecondaryDrawerItem userName = new SecondaryDrawerItem().withName("Name").withIcon(FontAwesome.Icon.faw_user);
+
+        Drawer drawer = new DrawerBuilder().withActivity(this).withToolbar(toolbar).addDrawerItems(
+                homeNav,
+                orderHistory,
+                new DividerDrawerItem(),
+                userName
+                ).build();
+        drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Logout"));
     }
 }
