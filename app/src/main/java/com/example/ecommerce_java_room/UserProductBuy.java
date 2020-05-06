@@ -1,6 +1,9 @@
 package com.example.ecommerce_java_room;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.room.Room;
 
 import android.content.Context;
@@ -12,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.Resource;
 import com.example.ecommerce_java_room.data.ProductDAO;
 import com.example.ecommerce_java_room.data.ProductDatabase;
 import com.example.ecommerce_java_room.model.Product;
@@ -27,6 +31,7 @@ public class UserProductBuy extends AppCompatActivity {
     ImageView productImage;
     TextView productPrice;
     NumberPicker productQuantity;
+    Toolbar toolbar;
     //id that comes from the clicked product on the productshowcase page
     int id;
     //database stuff
@@ -54,7 +59,12 @@ public class UserProductBuy extends AppCompatActivity {
         Picasso.get().load(product.getImageURL()).into(productImage);
         productQuantity.setMinValue(0); //setting max and min values for the spinner
         productQuantity.setMaxValue(product.getQuantity() - 1);
-
+        toolbar = findViewById(R.id.toolbar);
+        setToolbarStuff();
         //Toast.makeText(UserProductBuy.this, "i am alive you son of a bitch: " + id, Toast.LENGTH_SHORT).show();
+    }
+
+    public void setToolbarStuff() {
+        toolbar.setBackground(ResourcesCompat.getDrawable(getResources(), R.color.primary_dark, null));
     }
 }

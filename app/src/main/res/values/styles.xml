@@ -7,6 +7,16 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlActivated">#2fa3f6</item>
+
+        <!--navbar style stuff-->
+        <item name="windowActionBar">true</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+    </style>
+
+    <!--my action bar style-->
+    <style name="MyActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="actionMenuTextColor">@android:color/white</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
