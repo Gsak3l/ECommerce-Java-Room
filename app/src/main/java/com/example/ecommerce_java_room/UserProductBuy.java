@@ -1,5 +1,6 @@
 package com.example.ecommerce_java_room;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
@@ -11,6 +12,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.fonts.Font;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.HeaderViewListAdapter;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
@@ -22,6 +25,7 @@ import com.bumptech.glide.load.engine.Resource;
 import com.example.ecommerce_java_room.data.ProductDAO;
 import com.example.ecommerce_java_room.data.ProductDatabase;
 import com.example.ecommerce_java_room.model.Product;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textview.MaterialTextView;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -32,10 +36,12 @@ import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class UserProductBuy extends AppCompatActivity {
@@ -47,6 +53,8 @@ public class UserProductBuy extends AppCompatActivity {
     private Toolbar toolbar;
     //id that comes from the clicked product on the productshowcase page
     private int id;
+    //minimizing the decimal length of a double
+    DecimalFormat df = new DecimalFormat();
     //database stuff
     private ProductDAO productDAO;
     //drawer stuff
@@ -77,9 +85,9 @@ public class UserProductBuy extends AppCompatActivity {
         Picasso.get().load(product.getImageURL()).into(productImage);
         productQuantity.setMinValue(0); //setting max and min values for the spinner
         productQuantity.setMaxValue(product.getQuantity() - 1);
+        productPrice.setText(df.format(product.getPrice()) + "$");
         toolbar = findViewById(R.id.toolbar);
         //setting up the tool bar
-
         setToolbarStuff();
         //Toast.makeText(UserProductBuy.this, "i am alive you son of a bitch: " + id, Toast.LENGTH_SHORT).show();
 
@@ -87,7 +95,16 @@ public class UserProductBuy extends AppCompatActivity {
 
     public void setToolbarStuff() {
         //creating everything that will be contained in the drawer
-        homeNav = new PrimaryDrawerItem().withName("Home").withIcon(FontAwesome.Icon.faw_home);
+        homeNav = new PrimaryDrawerItem().withName("Home").withIcon(FontAwesome.Icon.faw_home)
+        .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+            @Override
+            public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                Intent intent = new Intent(UserProductBuy.this, MainMenuActivity.class);
+                intent.putExtra("type", "user");
+                startActivity(intent);
+                return false;
+            }
+        });
         orderHistory = new PrimaryDrawerItem().withName("Order History").withIcon(FontAwesome.Icon.faw_history);
         availability = new SecondaryDrawerItem().withName("Product Availability").withIcon(FontAwesome.Icon.faw_list);
         accountHeader = new AccountHeaderBuilder().withActivity(this).withTranslucentStatusBar(true)
@@ -102,7 +119,6 @@ public class UserProductBuy extends AppCompatActivity {
                 new DividerDrawerItem(),
                 availability
         ).build();
-        drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Logout"));
-        drawer.setSelection(0);
+        drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Logout").withIcon(FontAwesome.Icon.faw_sign_out));
     }
 }
