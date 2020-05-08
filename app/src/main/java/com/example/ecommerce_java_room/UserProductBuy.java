@@ -6,9 +6,12 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.room.Room;
 
+import android.accounts.Account;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.fonts.Font;
 import android.os.Bundle;
+import android.widget.HeaderViewListAdapter;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
@@ -27,6 +30,7 @@ import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.squareup.picasso.Picasso;
 
@@ -36,15 +40,20 @@ import java.util.ArrayList;
 
 public class UserProductBuy extends AppCompatActivity {
     //xml elements
-    TextView productTitle;
-    ImageView productImage;
-    TextView productPrice;
-    NumberPicker productQuantity;
-    Toolbar toolbar;
+    private TextView productTitle;
+    private ImageView productImage;
+    private TextView productPrice;
+    private NumberPicker productQuantity;
+    private Toolbar toolbar;
     //id that comes from the clicked product on the productshowcase page
-    int id;
+    private int id;
     //database stuff
     private ProductDAO productDAO;
+    //drawer stuff
+    private PrimaryDrawerItem homeNav;
+    private PrimaryDrawerItem orderHistory;
+    private AccountHeader accountHeader;
+    private SecondaryDrawerItem availability;
 
 
     @Override
@@ -70,24 +79,30 @@ public class UserProductBuy extends AppCompatActivity {
         productQuantity.setMaxValue(product.getQuantity() - 1);
         toolbar = findViewById(R.id.toolbar);
         //setting up the tool bar
-        PrimaryDrawerItem homeNav = new PrimaryDrawerItem().withName("Home");
-        PrimaryDrawerItem orderHistory = new PrimaryDrawerItem().withName("Order History");
-        setToolbarStuff(homeNav, orderHistory);
+
+        setToolbarStuff();
         //Toast.makeText(UserProductBuy.this, "i am alive you son of a bitch: " + id, Toast.LENGTH_SHORT).show();
+
     }
 
-    public void setToolbarStuff(PrimaryDrawerItem homeNav, PrimaryDrawerItem orderHistory) {
+    public void setToolbarStuff() {
+        //creating everything that will be contained in the drawer
+        homeNav = new PrimaryDrawerItem().withName("Home").withIcon(FontAwesome.Icon.faw_home);
+        orderHistory = new PrimaryDrawerItem().withName("Order History").withIcon(FontAwesome.Icon.faw_history);
+        availability = new SecondaryDrawerItem().withName("Product Availability").withIcon(FontAwesome.Icon.faw_list);
+        accountHeader = new AccountHeaderBuilder().withActivity(this).withTranslucentStatusBar(true)
+                .addProfiles(new ProfileDrawerItem().withName("mike mike").withEmail("email@example.org"))
+                .build();
+        //giving color to the drawer
         toolbar.setBackground(ResourcesCompat.getDrawable(getResources(), R.color.primary_dark, null));
-        AccountHeader accountHeader = new AccountHeaderBuilder().
-                withActivity(this).withTranslucentStatusBar(true).build();
-        SecondaryDrawerItem userName = new SecondaryDrawerItem().withName("Name").withIcon(FontAwesome.Icon.faw_user);
 
-        Drawer drawer = new DrawerBuilder().withActivity(this).withToolbar(toolbar).addDrawerItems(
+        Drawer drawer = new DrawerBuilder().withActivity(this).withToolbar(toolbar).withAccountHeader(accountHeader).addDrawerItems(
                 homeNav,
                 orderHistory,
                 new DividerDrawerItem(),
-                userName
-                ).build();
+                availability
+        ).build();
         drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Logout"));
+        drawer.setSelection(0);
     }
 }
