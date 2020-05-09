@@ -25,6 +25,7 @@ import com.bumptech.glide.load.engine.Resource;
 import com.example.ecommerce_java_room.data.ProductDAO;
 import com.example.ecommerce_java_room.data.ProductDatabase;
 import com.example.ecommerce_java_room.data.UserDAO;
+import com.example.ecommerce_java_room.data.UserDatabase;
 import com.example.ecommerce_java_room.model.Product;
 import com.example.ecommerce_java_room.model.User;
 import com.google.android.material.navigation.NavigationView;
@@ -79,6 +80,8 @@ public class UserProductBuy extends AppCompatActivity {
         //database stuff
         productDAO = Room.databaseBuilder(this, ProductDatabase.class, "Product")
                 .allowMainThreadQueries().build().getProductDao();
+        userDAO = Room.databaseBuilder(this, UserDatabase.class, "User").
+                allowMainThreadQueries().build().getUserDao();
         //finding the xml elements by id
         productTitle = findViewById(R.id.user_buy_product_title);
         productImage = findViewById(R.id.user_buy_product_image);
@@ -100,8 +103,8 @@ public class UserProductBuy extends AppCompatActivity {
     }
 
     public void setToolbarStuff() {
-        User user = userDAO.getUserById(userId);
         //creating everything that will be contained in the drawer
+        User user = userDAO.getUserById(userId);
         homeNav = new PrimaryDrawerItem().withName("Home").withIcon(FontAwesome.Icon.faw_home)
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
