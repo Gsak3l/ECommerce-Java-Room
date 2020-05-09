@@ -56,11 +56,11 @@ public class LoginActivity extends AppCompatActivity {
                 if (email.equals("admin") && password.equals("admin")) {
                     intent = new Intent(LoginActivity.this, MainMenuActivity.class);
                     intent.putExtra("type", "admin");
-                    intent.putExtra("id", -1);
+                    intent.putExtra("userId", -1);
                 } else if (user != null) {
                     intent = new Intent(LoginActivity.this, MainMenuActivity.class);
                     intent.putExtra("type", "user");
-                    intent.putExtra("id", user.getId());
+                    intent.putExtra("userId", user.getId());
                 } else if(userDAO.getUserEmail(email) != null){
                     Toast.makeText(LoginActivity.this, "Incorrect Password!",  Toast.LENGTH_LONG).show();
                 } else {

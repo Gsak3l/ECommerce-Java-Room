@@ -39,23 +39,30 @@ public class productShowcaseAdmin extends AppCompatActivity {
     boolean flag = true;
     private String categoryName;
     private String userType;
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_showcase_admin);
+        //getting all the values sent from MainMenu
         categoryName = getIntent().getExtras().get("category").toString();
         userType = getIntent().getExtras().get("userType").toString();
+        userId = Integer.parseInt(getIntent().getExtras().get("userId").toString());
+        //making text for the category name
         Toast.makeText(this, categoryName, Toast.LENGTH_SHORT).show();
         productDAO = Room.databaseBuilder(this, ProductDatabase.class, "Product")
                 .allowMainThreadQueries().build().getProductDao();
+        //showing images
         initImageBitmaps(userType);
         addNewProduct = (com.google.android.material.floatingactionbutton.FloatingActionButton) findViewById(R.id.admin_add_new_product_button);
         basket = (com.google.android.material.floatingactionbutton.FloatingActionButton) findViewById(R.id.user_basket_button);
-        if(userType.equals("user")) {
+        //showing different buttons for user and admin
+        if (userType.equals("user")) {
             basket.setVisibility(View.VISIBLE);
             addNewProduct.setVisibility(View.INVISIBLE);
         }
+        //showing different buttons for user and admin
         addNewProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,15 +73,7 @@ public class productShowcaseAdmin extends AppCompatActivity {
     }
 
     private void initImageBitmaps(String userType) {
-        /*deleting all products
-        if(flag) {
-            productDAO.getAllProducts().size();
-            productDAO.deleteAllProducts();
-            productDAO.getAllProducts().size();
-            flag = false;
-        }*/
-        //productDAO.updateCategory(49, "Dresses for Women");
-
+        //giving all the values like price quantity etc for all the products
         products = productDAO.getProductsByCategory(categoryName);
         for (int i = 0; i < products.size(); i++) {
             productImageUrl.add(products.get(i).getImageURL());
@@ -83,13 +82,13 @@ public class productShowcaseAdmin extends AppCompatActivity {
             productPrice.add(products.get(i).getPrice());
             productCode.add(products.get(i).getId());
         }
-        initRecyclerView(userType);
+        initRecyclerView(userType, userId);
     }
 
-    private void initRecyclerView(String userType) {
+    private void initRecyclerView(String userType, int userId) {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, productImageUrl, productTitles,
-                productQuantity, productPrice, productCode, userType);
+                productQuantity, productPrice, productCode, userType, userId);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

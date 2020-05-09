@@ -34,7 +34,7 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         userType = getIntent().getExtras().get("type").toString();
-        userId = Integer.parseInt(getIntent().getExtras().get("id").toString());
+        userId = Integer.parseInt(getIntent().getExtras().get("userId").toString());
 
 
         //giving reference to all the ImageViews of our xml

@@ -24,7 +24,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.Resource;
 import com.example.ecommerce_java_room.data.ProductDAO;
 import com.example.ecommerce_java_room.data.ProductDatabase;
+import com.example.ecommerce_java_room.data.UserDAO;
 import com.example.ecommerce_java_room.model.Product;
+import com.example.ecommerce_java_room.model.User;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textview.MaterialTextView;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
@@ -57,11 +59,14 @@ public class UserProductBuy extends AppCompatActivity {
     DecimalFormat df = new DecimalFormat();
     //database stuff
     private ProductDAO productDAO;
+    private UserDAO userDAO;
     //drawer stuff
     private PrimaryDrawerItem homeNav;
     private PrimaryDrawerItem orderHistory;
     private AccountHeader accountHeader;
     private SecondaryDrawerItem availability;
+    //
+    private int userId;
 
 
     @Override
@@ -69,7 +74,8 @@ public class UserProductBuy extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_product_buy);
         //locating the item clicked by the id that we got when they clicked the product
-        id = Integer.parseInt(getIntent().getExtras().get("id").toString());
+        id = Integer.parseInt(getIntent().getExtras().get("productId").toString());
+        userId = Integer.parseInt(getIntent().getExtras().get("userId").toString());
         //database stuff
         productDAO = Room.databaseBuilder(this, ProductDatabase.class, "Product")
                 .allowMainThreadQueries().build().getProductDao();
@@ -94,22 +100,22 @@ public class UserProductBuy extends AppCompatActivity {
     }
 
     public void setToolbarStuff() {
+        User user = userDAO.getUserById(userId);
         //creating everything that will be contained in the drawer
         homeNav = new PrimaryDrawerItem().withName("Home").withIcon(FontAwesome.Icon.faw_home)
-        .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-            @Override
-            public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                Intent intent = new Intent(UserProductBuy.this, MainMenuActivity.class);
-                intent.putExtra("type", "user");
-                intent.putExtra("id", )
-                startActivity(intent);
-                return false;
-            }
-        });
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        Intent intent = new Intent(UserProductBuy.this, MainMenuActivity.class);
+                        intent.putExtra("type", "user");
+                        startActivity(intent);
+                        return false;
+                    }
+                });
         orderHistory = new PrimaryDrawerItem().withName("Order History").withIcon(FontAwesome.Icon.faw_history);
         availability = new SecondaryDrawerItem().withName("Product Availability").withIcon(FontAwesome.Icon.faw_list);
         accountHeader = new AccountHeaderBuilder().withActivity(this).withTranslucentStatusBar(true)
-                .addProfiles(new ProfileDrawerItem().withName("mike mike").withEmail("email@example.org"))
+                .addProfiles(new ProfileDrawerItem().withName(user.getFullName()).withEmail(user.getEmail()))
                 .build();
         //giving color to the drawer
         toolbar.setBackground(ResourcesCompat.getDrawable(getResources(), R.color.primary_dark, null));

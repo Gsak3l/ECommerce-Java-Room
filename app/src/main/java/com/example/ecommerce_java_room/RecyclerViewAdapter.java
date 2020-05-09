@@ -32,9 +32,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<Integer> mCode = new ArrayList<>();
     private Context mContext;
     private String userType;
+    private int userId;
 
     public RecyclerViewAdapter(Context mContext, ArrayList<String> mImages, ArrayList<String> mImageTitles,
-                               ArrayList<Integer> mQuantity, ArrayList<Double> mPrice, ArrayList<Integer> mCode, String userType) {
+                               ArrayList<Integer> mQuantity, ArrayList<Double> mPrice, ArrayList<Integer> mCode, String userType,
+                               int userId) {
         this.mContext = mContext;
         this.mImageTitles = mImageTitles;
         this.mImages = mImages;
@@ -42,6 +44,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.mPrice = mPrice;
         this.mCode = mCode;
         this.userType = userType;
+        this.userId = userId;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -97,7 +100,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     //onclick it does stuff
                     Toast.makeText(mContext, mImageTitles.get(position), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(mContext, UserProductBuy.class);
-                    intent.putExtra("id", mCode.get(position));
+                    intent.putExtra("productId", mCode.get(position));
+                    intent.putExtra("userId", userId);
                     mContext.startActivity(intent);
                 }
             });
@@ -115,7 +119,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 @Override
                 public boolean onLongClick(View v) {
                     Intent intent = new Intent(mContext, AdminAddNewProductActivity.class);
-                    intent.putExtra("id", mCode.get(position));
+                    intent.putExtra("productId", mCode.get(position));
+                    intent.putExtra("userId", userId);
                     mContext.startActivity(intent);
                     return true;
                 }
