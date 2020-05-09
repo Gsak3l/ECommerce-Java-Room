@@ -101,6 +101,7 @@ public class UserProductBuy extends AppCompatActivity {
             public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                 Intent intent = new Intent(UserProductBuy.this, MainMenuActivity.class);
                 intent.putExtra("type", "user");
+                intent.putExtra("id", )
                 startActivity(intent);
                 return false;
             }
@@ -112,7 +113,7 @@ public class UserProductBuy extends AppCompatActivity {
                 .build();
         //giving color to the drawer
         toolbar.setBackground(ResourcesCompat.getDrawable(getResources(), R.color.primary_dark, null));
-
+        //adding options to the drawer
         Drawer drawer = new DrawerBuilder().withActivity(this).withToolbar(toolbar).withAccountHeader(accountHeader).addDrawerItems(
                 homeNav,
                 orderHistory,
@@ -120,5 +121,6 @@ public class UserProductBuy extends AppCompatActivity {
                 availability
         ).build();
         drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Logout").withIcon(FontAwesome.Icon.faw_sign_out));
+        drawer.setSelection(0);
     }
 }
