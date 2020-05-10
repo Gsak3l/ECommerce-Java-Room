@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -35,6 +36,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         userType = getIntent().getExtras().get("type").toString();
         userId = Integer.parseInt(getIntent().getExtras().get("userId").toString());
+        Toast.makeText(MainMenuActivity.this, "Products", Toast.LENGTH_LONG).show();
 
 
         //giving reference to all the ImageViews of our xml

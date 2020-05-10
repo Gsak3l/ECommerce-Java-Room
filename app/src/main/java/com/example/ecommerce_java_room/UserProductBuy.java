@@ -62,8 +62,8 @@ public class UserProductBuy extends AppCompatActivity {
     //drawer stuff
     private PrimaryDrawerItem homeNav;
     private PrimaryDrawerItem orderHistory;
+    private PrimaryDrawerItem availability;
     private AccountHeader accountHeader;
-    private SecondaryDrawerItem availability;
     //
     private int userId;
     //id that comes from the clicked product on the productshowcase page
@@ -105,6 +105,7 @@ public class UserProductBuy extends AppCompatActivity {
     public void setToolbarStuff() {
         //creating everything that will be contained in the drawer
         final User user = userDAO.getUserById(userId);
+        //on home nav home button click
         homeNav = new PrimaryDrawerItem().withName("Home").withIcon(FontAwesome.Icon.faw_home)
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
@@ -116,8 +117,15 @@ public class UserProductBuy extends AppCompatActivity {
                         return false;
                     }
                 });
-        orderHistory = new PrimaryDrawerItem().withName("Order History").withIcon(FontAwesome.Icon.faw_history);
-        availability = new SecondaryDrawerItem().withName("Product Availability").withIcon(FontAwesome.Icon.faw_list);
+        orderHistory = new PrimaryDrawerItem().withName("Order History").withIcon(FontAwesome.Icon.faw_history).
+                withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+
+                        return false;
+                    }
+                });
+        availability = new PrimaryDrawerItem().withName("Product Availability").withIcon(FontAwesome.Icon.faw_list);
         accountHeader = new AccountHeaderBuilder().withActivity(this).withTranslucentStatusBar(true)
                 .addProfiles(new ProfileDrawerItem().withName(user.getFullName()).withEmail(user.getEmail()))
                 .build();
