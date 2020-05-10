@@ -48,12 +48,17 @@
             android:textColor="@android:color/white" />
 
         <com.rey.material.widget.TextView
+            android:layout_marginTop="20dp"
             android:id="@+id/search_show_availability"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
             android:visibility="invisible" />
 
         <ImageView
+            android:layout_marginTop="20dp"
             android:id="@+id/search_show_product_image"
             android:layout_width="match_parent"
             android:layout_height="10dp"
