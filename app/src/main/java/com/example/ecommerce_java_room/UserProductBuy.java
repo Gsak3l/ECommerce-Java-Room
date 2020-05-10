@@ -1,35 +1,23 @@
 package com.example.ecommerce_java_room;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.room.Room;
 
-import android.accounts.Account;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.fonts.Font;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.HeaderViewListAdapter;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.Resource;
 import com.example.ecommerce_java_room.data.ProductDAO;
 import com.example.ecommerce_java_room.data.ProductDatabase;
 import com.example.ecommerce_java_room.data.UserDAO;
 import com.example.ecommerce_java_room.data.UserDatabase;
 import com.example.ecommerce_java_room.model.Product;
 import com.example.ecommerce_java_room.model.User;
-import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.textview.MaterialTextView;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -38,14 +26,10 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
-import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 
 public class UserProductBuy extends AppCompatActivity {
     //xml elements
@@ -121,7 +105,8 @@ public class UserProductBuy extends AppCompatActivity {
                 withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-
+                        Intent intent = new Intent(UserProductBuy.this, ProductSearch.class);
+                        startActivity(intent);
                         return false;
                     }
                 });

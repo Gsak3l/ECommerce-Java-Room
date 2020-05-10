@@ -60,7 +60,7 @@ public class MainMenuActivity extends AppCompatActivity {
         male_t_shirts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainMenuActivity.this, productShowcaseAdmin.class);
+                Intent intent = new Intent(MainMenuActivity.this, ProductShowcase.class);
                 intent.putExtra("category", "T-Shirts for Men");  //passing to the AdminNewProductActivity.java the category with the name x
                 intent.putExtra("userType", userType);
                 intent.putExtra("userId", userId);
@@ -71,7 +71,7 @@ public class MainMenuActivity extends AppCompatActivity {
         male_trousers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainMenuActivity.this, productShowcaseAdmin.class);
+                Intent intent = new Intent(MainMenuActivity.this, ProductShowcase.class);
                 intent.putExtra("category", "Trousers for Men"); //passing to the AdminNewProductActivity.java the category with the name x
                 intent.putExtra("userType", userType);
                 intent.putExtra("userId", userId);
@@ -82,7 +82,7 @@ public class MainMenuActivity extends AppCompatActivity {
         male_sweater.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainMenuActivity.this, productShowcaseAdmin.class);
+                Intent intent = new Intent(MainMenuActivity.this, ProductShowcase.class);
                 intent.putExtra("category", "Sweaters for Men"); //passing to the AdminNewProductActivity.java the category with the name x
                 intent.putExtra("userType", userType);
                 intent.putExtra("userId", userId);
@@ -93,7 +93,7 @@ public class MainMenuActivity extends AppCompatActivity {
         male_shoes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainMenuActivity.this, productShowcaseAdmin.class);
+                Intent intent = new Intent(MainMenuActivity.this, ProductShowcase.class);
                 intent.putExtra("category", "Shoes for Men"); //passing to the AdminNewProductActivity.java the category with the name x
                 intent.putExtra("userType", userType);
                 intent.putExtra("userId", userId);
@@ -108,7 +108,7 @@ public class MainMenuActivity extends AppCompatActivity {
         female_dress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainMenuActivity.this, productShowcaseAdmin.class);
+                Intent intent = new Intent(MainMenuActivity.this, ProductShowcase.class);
                 intent.putExtra("category", "Dresses for Women"); //passing to the AdminNewProductActivity.java the category with the name x
                 intent.putExtra("userType", userType);
                 intent.putExtra("userId", userId);
@@ -119,7 +119,7 @@ public class MainMenuActivity extends AppCompatActivity {
         female_trousers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainMenuActivity.this, productShowcaseAdmin.class);
+                Intent intent = new Intent(MainMenuActivity.this, ProductShowcase.class);
                 intent.putExtra("category", "Trousers for Women"); //passing to the AdminNewProductActivity.java the category with the name x
                 intent.putExtra("userType", userType);
                 intent.putExtra("userId", userId);
@@ -130,7 +130,7 @@ public class MainMenuActivity extends AppCompatActivity {
         female_skirt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainMenuActivity.this, productShowcaseAdmin.class);
+                Intent intent = new Intent(MainMenuActivity.this, ProductShowcase.class);
                 intent.putExtra("category", "Skirts for Women"); //passing to the AdminNewProductActivity.java the category with the name x
                 intent.putExtra("userType", userType);
                 intent.putExtra("userId", userId);
@@ -141,7 +141,7 @@ public class MainMenuActivity extends AppCompatActivity {
         female_shoes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainMenuActivity.this, productShowcaseAdmin.class);
+                Intent intent = new Intent(MainMenuActivity.this, ProductShowcase.class);
                 intent.putExtra("category", "Shoes for Women"); //passing to the AdminNewProductActivity.java the category with the name x
                 intent.putExtra("userType", userType);
                 intent.putExtra("userId", userId);
@@ -156,7 +156,7 @@ public class MainMenuActivity extends AppCompatActivity {
         accessories_hat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainMenuActivity.this, productShowcaseAdmin.class);
+                Intent intent = new Intent(MainMenuActivity.this, ProductShowcase.class);
                 intent.putExtra("category", "Hats"); //passing to the AdminNewProductActivity.java the category with the name x
                 intent.putExtra("userType", userType);
                 intent.putExtra("userId", userId);
@@ -167,7 +167,7 @@ public class MainMenuActivity extends AppCompatActivity {
         accessories_watch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainMenuActivity.this, productShowcaseAdmin.class);
+                Intent intent = new Intent(MainMenuActivity.this, ProductShowcase.class);
                 intent.putExtra("category", "Watches"); //passing to the AdminNewProductActivity.java the category with the name x
                 intent.putExtra("userType", userType);
                 intent.putExtra("userId", userId);
@@ -178,7 +178,7 @@ public class MainMenuActivity extends AppCompatActivity {
         accessories_bag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainMenuActivity.this, productShowcaseAdmin.class);
+                Intent intent = new Intent(MainMenuActivity.this, ProductShowcase.class);
                 intent.putExtra("category", "Purses&Bags"); //passing to the AdminNewProductActivity.java the category with the name x
                 intent.putExtra("userType", userType);
                 intent.putExtra("userId", userId);
@@ -189,7 +189,7 @@ public class MainMenuActivity extends AppCompatActivity {
         accessories_scarf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainMenuActivity.this, productShowcaseAdmin.class);
+                Intent intent = new Intent(MainMenuActivity.this, ProductShowcase.class);
                 intent.putExtra("category", "Scarfs"); //passing to the AdminNewProductActivity.java the category with the name x
                 intent.putExtra("userType", userType);
                 intent.putExtra("userId", userId);

@@ -38,8 +38,8 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
     private TextInputLayout productQuantity;
     private TextInputLayout productPrice;
     private List<String> typesAvailable = new ArrayList<>();
-    FloatingActionButton confirmAddProductButton;
-    FloatingActionButton deleteProductButton;
+    private FloatingActionButton confirmAddProductButton;
+    private FloatingActionButton deleteProductButton;
 
     //database stuff
     private ProductDAO productDAO;
@@ -89,7 +89,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
 
         //checking if its a product add or a product edit
         try {
-            editById = Integer.parseInt(getIntent().getExtras().get("id").toString());
+            editById = Integer.parseInt(getIntent().getExtras().get("productId").toString());
             editProduct(editById);
 
         } catch (NullPointerException e) {

@@ -17,7 +17,7 @@ import com.example.ecommerce_java_room.model.Product;
 import java.util.ArrayList;
 import java.util.List;
 
-public class productShowcaseAdmin extends AppCompatActivity {
+public class ProductShowcase extends AppCompatActivity {
 
     //lists used to fill the recycler from our database
     private ArrayList<String> productTitles = new ArrayList<>();
@@ -44,7 +44,7 @@ public class productShowcaseAdmin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.product_showcase_admin);
+        setContentView(R.layout.product_showcase);
         //getting all the values sent from MainMenu
         categoryName = getIntent().getExtras().get("category").toString();
         userType = getIntent().getExtras().get("userType").toString();
@@ -66,7 +66,7 @@ public class productShowcaseAdmin extends AppCompatActivity {
         addNewProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent login = new Intent(productShowcaseAdmin.this, AdminAddNewProductActivity.class);
+                Intent login = new Intent(ProductShowcase.this, AdminAddNewProductActivity.class);
                 startActivity(login);
             }
         });
