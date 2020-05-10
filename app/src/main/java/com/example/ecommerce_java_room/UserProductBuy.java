@@ -54,8 +54,6 @@ public class UserProductBuy extends AppCompatActivity {
     private TextView productPrice;
     private NumberPicker productQuantity;
     private Toolbar toolbar;
-    //id that comes from the clicked product on the productshowcase page
-    private int id;
     //minimizing the decimal length of a double
     DecimalFormat df = new DecimalFormat();
     //database stuff
@@ -68,6 +66,8 @@ public class UserProductBuy extends AppCompatActivity {
     private SecondaryDrawerItem availability;
     //
     private int userId;
+    //id that comes from the clicked product on the productshowcase page
+    private int productId;
 
 
     @Override
@@ -75,7 +75,7 @@ public class UserProductBuy extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_product_buy);
         //locating the item clicked by the id that we got when they clicked the product
-        id = Integer.parseInt(getIntent().getExtras().get("productId").toString());
+        productId = Integer.parseInt(getIntent().getExtras().get("productId").toString());
         userId = Integer.parseInt(getIntent().getExtras().get("userId").toString());
         //database stuff
         productDAO = Room.databaseBuilder(this, ProductDatabase.class, "Product")
@@ -87,7 +87,7 @@ public class UserProductBuy extends AppCompatActivity {
         productImage = findViewById(R.id.user_buy_product_image);
         productPrice = findViewById(R.id.user_buy_product_price);
         productQuantity = findViewById(R.id.user_buy_product_quantity);
-        Product product = productDAO.getProduct(id);
+        Product product = productDAO.getProduct(productId);
         //table that contains all the numbers for the numberPicker
         //giving values to the fields
         productTitle.setText(product.getTitle());
@@ -104,13 +104,14 @@ public class UserProductBuy extends AppCompatActivity {
 
     public void setToolbarStuff() {
         //creating everything that will be contained in the drawer
-        User user = userDAO.getUserById(userId);
+        final User user = userDAO.getUserById(userId);
         homeNav = new PrimaryDrawerItem().withName("Home").withIcon(FontAwesome.Icon.faw_home)
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         Intent intent = new Intent(UserProductBuy.this, MainMenuActivity.class);
                         intent.putExtra("type", "user");
+                        intent.putExtra("userId", userId);
                         startActivity(intent);
                         return false;
                     }
