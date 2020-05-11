@@ -79,16 +79,16 @@ public class UserProductBuy extends AppCompatActivity {
         productQuantity.setMinValue(0); //setting max and min values for the spinner
         productQuantity.setMaxValue(product.getQuantity() - 1);
         productPrice.setText(df.format(product.getPrice()) + "$");
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar_buy);
         //setting up the tool bar
-        setToolbarStuff();
+        setToolbar();
         //Toast.makeText(UserProductBuy.this, "i am alive you son of a bitch: " + id, Toast.LENGTH_SHORT).show();
 
     }
 
-    public void setToolbarStuff() {
+    public void setToolbar() {
         //creating everything that will be contained in the drawer
-        final User user = userDAO.getUserById(userId);
+        User user = userDAO.getUserById(userId);
         //on home nav home button click
         homeNav = new PrimaryDrawerItem().withName("Home").withIcon(FontAwesome.Icon.faw_home)
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {

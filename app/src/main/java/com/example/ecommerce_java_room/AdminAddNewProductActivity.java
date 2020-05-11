@@ -2,6 +2,7 @@ package com.example.ecommerce_java_room;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.room.Room;
 
 import android.content.DialogInterface;
@@ -18,14 +19,23 @@ import android.widget.Toast;
 
 import com.example.ecommerce_java_room.data.ProductDAO;
 import com.example.ecommerce_java_room.data.ProductDatabase;
+import com.example.ecommerce_java_room.data.UserDAO;
 import com.example.ecommerce_java_room.model.Product;
+import com.example.ecommerce_java_room.model.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 import com.jaredrummler.materialspinner.MaterialSpinner;
+import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import org.w3c.dom.Text;
 
@@ -54,6 +64,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
     //database stuff
     private ProductDAO productDAO;
     private ProductDatabase productDatabase;
+    private UserDAO userDAO;
 
     //other
     private int editById;
@@ -89,9 +100,9 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         productTypeSpinner = findViewById(R.id.add_new_product_category);
         confirmAddProductButton = findViewById(R.id.add_new_product_confirm_button);
         deleteProductButton = findViewById(R.id.delete_product_confirm_button);
-
         //toolbar
-
+        toolbar = findViewById(R.id.toolbar_add_admin);
+        setToolbar();
 
         //giving the available values of the typesAvailable list to the spinner
         final ArrayAdapter products = new ArrayAdapter(this, android.R.layout.simple_spinner_item, typesAvailable);
@@ -218,4 +229,51 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void setToolbar() {
+        //creating everything that will be contained in the drawer
+        //on home nav home button click
+        homeNav = new PrimaryDrawerItem().withName("Home").withIcon(FontAwesome.Icon.faw_home)
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        Intent intent = new Intent(AdminAddNewProductActivity.this, MainMenuActivity.class);
+                        intent.putExtra("type", "admin");
+                        intent.putExtra("userId", -1);
+                        startActivity(intent);
+                        return false;
+                    }
+                });
+        orderHistory = new PrimaryDrawerItem().withName("Order History").withIcon(FontAwesome.Icon.faw_history).
+                withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        return false;
+                    }
+                });
+        //on product availability click listener
+        availability = new PrimaryDrawerItem().withName("Product Availability").withIcon(FontAwesome.Icon.faw_list).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+            @Override
+            public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                Intent intent = new Intent(AdminAddNewProductActivity.this, ProductSearch.class);
+                startActivity(intent);
+                return false;
+            }
+        });
+        accountHeader = new AccountHeaderBuilder().withActivity(this).withTranslucentStatusBar(true)
+                .addProfiles(new ProfileDrawerItem().withName("admin").withEmail("admin@admin.admin"))
+                .build();
+        //giving color to the drawer
+        toolbar.setBackground(ResourcesCompat.getDrawable(getResources(), R.color.primary_dark, null));
+        //adding options to the drawer
+        Drawer drawer = new DrawerBuilder().withActivity(this).withToolbar(toolbar).withAccountHeader(accountHeader).addDrawerItems(
+                homeNav,
+                orderHistory,
+                new DividerDrawerItem(),
+                availability
+        ).build();
+        drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Logout").withIcon(FontAwesome.Icon.faw_sign_out));
+        drawer.setSelection(0);
+    }
+
 }
