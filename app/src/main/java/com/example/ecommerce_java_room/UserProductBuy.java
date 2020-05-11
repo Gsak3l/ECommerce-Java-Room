@@ -37,13 +37,13 @@ public class UserProductBuy extends AppCompatActivity {
     private ImageView productImage;
     private TextView productPrice;
     private NumberPicker productQuantity;
-    private Toolbar toolbar;
     //minimizing the decimal length of a double
     DecimalFormat df = new DecimalFormat();
     //database stuff
     private ProductDAO productDAO;
     private UserDAO userDAO;
     //drawer stuff
+    private Toolbar toolbar;
     private PrimaryDrawerItem homeNav;
     private PrimaryDrawerItem orderHistory;
     private PrimaryDrawerItem availability;
@@ -105,12 +105,18 @@ public class UserProductBuy extends AppCompatActivity {
                 withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        Intent intent = new Intent(UserProductBuy.this, ProductSearch.class);
-                        startActivity(intent);
                         return false;
                     }
                 });
-        availability = new PrimaryDrawerItem().withName("Product Availability").withIcon(FontAwesome.Icon.faw_list);
+        //on product availability click listener
+        availability = new PrimaryDrawerItem().withName("Product Availability").withIcon(FontAwesome.Icon.faw_list).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+            @Override
+            public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                Intent intent = new Intent(UserProductBuy.this, ProductSearch.class);
+                startActivity(intent);
+                return false;
+            }
+        });
         accountHeader = new AccountHeaderBuilder().withActivity(this).withTranslucentStatusBar(true)
                 .addProfiles(new ProfileDrawerItem().withName(user.getFullName()).withEmail(user.getEmail()))
                 .build();

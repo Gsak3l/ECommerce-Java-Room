@@ -57,7 +57,7 @@ public class ProductSearch extends AppCompatActivity {
                         Picasso.get().load(product.getImageURL()).into(showImage);
                         showImage.setVisibility(View.VISIBLE);
                         showImage.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
-                        showImage.getLayoutParams().height = 1000;
+                        showImage.getLayoutParams().height = 900;
                         searchId.getEditText().setText("");
                     }
                     catch (NullPointerException e) {

@@ -1,6 +1,7 @@
 package com.example.ecommerce_java_room;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.room.Room;
 
 import android.content.DialogInterface;
@@ -23,6 +24,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 import com.jaredrummler.materialspinner.MaterialSpinner;
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 
 import org.w3c.dom.Text;
 
@@ -41,12 +44,22 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
     private FloatingActionButton confirmAddProductButton;
     private FloatingActionButton deleteProductButton;
 
+    //drawer stuff
+    private Toolbar toolbar;
+    private PrimaryDrawerItem homeNav;
+    private PrimaryDrawerItem orderHistory;
+    private PrimaryDrawerItem availability;
+    private AccountHeader accountHeader;
+
     //database stuff
     private ProductDAO productDAO;
     private ProductDatabase productDatabase;
 
     //other
     private int editById;
+
+    public AdminAddNewProductActivity() {
+    }
 
 
     @Override
@@ -68,7 +81,6 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         typesAvailable.add("Watches");
         typesAvailable.add("Scarfs");
 
-
         //finding all the elements of our xml file
         productURL = findViewById(R.id.add_new_product_imageURL);
         productTitle = findViewById(R.id.add_new_product_title);
@@ -77,6 +89,9 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         productTypeSpinner = findViewById(R.id.add_new_product_category);
         confirmAddProductButton = findViewById(R.id.add_new_product_confirm_button);
         deleteProductButton = findViewById(R.id.delete_product_confirm_button);
+
+        //toolbar
+
 
         //giving the available values of the typesAvailable list to the spinner
         final ArrayAdapter products = new ArrayAdapter(this, android.R.layout.simple_spinner_item, typesAvailable);
