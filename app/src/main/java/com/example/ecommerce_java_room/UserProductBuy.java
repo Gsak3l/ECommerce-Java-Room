@@ -81,7 +81,7 @@ public class UserProductBuy extends AppCompatActivity {
         productPrice = findViewById(R.id.user_buy_product_price);
         productQuantity = findViewById(R.id.user_buy_product_quantity);
         buyProductButton = findViewById(R.id.user_buy_add_to_card);
-        Product product = productDAO.getProduct(productId);
+        final Product product = productDAO.getProduct(productId);
         //table that contains all the numbers for the numberPicker
         //giving values to the fields
         productTitle.setText(product.getTitle());
@@ -97,7 +97,10 @@ public class UserProductBuy extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //getting all the values for price, quantity, etc...
-
+                int quantity = productQuantity.getValue(); //works
+                double orderPrice = Double.parseDouble(df.format(product.getPrice() * quantity));
+                productDAO.updateQuantity(productId, quantity);
+                Toast.makeText(UserProductBuy.this, "" + orderPrice, Toast.LENGTH_SHORT).show();
             }
         });
     }

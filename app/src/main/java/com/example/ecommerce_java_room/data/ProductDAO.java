@@ -40,5 +40,7 @@ public interface ProductDAO {
     @Query("UPDATE Product SET category = :category WHERE id = :id")
     void updateCategory(int id, String category);
 
-
+    //update the availability of a product
+    @Query("UPDATE Product SET quantity = quantity - :quantity WHERE id = :id")
+    void updateQuantity(int id, int quantity);
 }

@@ -16,8 +16,7 @@ public class Order implements Serializable{
     private int orderProductQuantity;
 
     //constructor
-    public Order(int id, int productId, int userId, double orderPrice, int orderProductQuantity) {
-        this.id = id;
+    public Order(int productId, int userId, double orderPrice, int orderProductQuantity) {
         this.productId = productId;
         this.userId = userId;
         this.orderPrice = orderPrice;
