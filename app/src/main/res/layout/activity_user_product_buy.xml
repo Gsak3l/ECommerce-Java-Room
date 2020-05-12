@@ -88,7 +88,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/buttons"
-                android:text="add to card"
+                android:text="purchase now!"
                 android:textColor="@android:color/white" />
 
 
