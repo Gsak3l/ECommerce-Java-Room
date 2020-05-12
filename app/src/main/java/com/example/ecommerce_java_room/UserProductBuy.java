@@ -21,6 +21,7 @@ import com.example.ecommerce_java_room.data.ProductDAO;
 import com.example.ecommerce_java_room.data.ProductDatabase;
 import com.example.ecommerce_java_room.data.UserDAO;
 import com.example.ecommerce_java_room.data.UserDatabase;
+import com.example.ecommerce_java_room.model.Order;
 import com.example.ecommerce_java_room.model.Product;
 import com.example.ecommerce_java_room.model.User;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
@@ -35,6 +36,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
+import java.util.List;
 
 public class UserProductBuy extends AppCompatActivity {
     //xml elements
@@ -98,9 +100,16 @@ public class UserProductBuy extends AppCompatActivity {
             public void onClick(View v) {
                 //getting all the values for price, quantity, etc...
                 int quantity = productQuantity.getValue(); //works
-                double orderPrice = Double.parseDouble(df.format(product.getPrice() * quantity));
-                productDAO.updateQuantity(productId, quantity);
-                Toast.makeText(UserProductBuy.this, "" + orderPrice, Toast.LENGTH_SHORT).show();
+                if (quantity != 0) {
+                    double orderPrice = Double.parseDouble(df.format(product.getPrice() * quantity));
+                    productDAO.updateQuantity(productId, quantity);
+                    Order order = new Order(productId, userId, orderPrice, quantity);
+                    orderDAO.insert(order);
+                    Toast.makeText(UserProductBuy.this, "Success!", Toast.LENGTH_LONG).show();
+                    productQuantity.setValue(0);
+                } else {
+                    Toast.makeText(UserProductBuy.this, "Transaction Failed!", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

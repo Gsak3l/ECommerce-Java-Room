@@ -16,6 +16,9 @@ public interface OrderDAO {
     @Query("SELECT * FROM [Order] WHERE id = :id") //reserved word ftw....
     Order getOrderById(int id); //i wasted 45 minutes on nothing :D
 
+    @Insert
+    void insert(Order order);
+
     //get all orders for a specific user
     @Query("SELECT * FROM [Order] WHERE userId = :userId")
     List<Order> getUserOrders(int userId);
