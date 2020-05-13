@@ -19,7 +19,7 @@ import com.bumptech.glide.Glide;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class RecyclerViewAdapterProduct extends RecyclerView.Adapter<RecyclerViewAdapterProduct.ViewHolder> {
 
     //minimizing the decimal length of a double
     DecimalFormat df = new DecimalFormat();
@@ -34,9 +34,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private String userType;
     private int userId;
 
-    public RecyclerViewAdapter(Context mContext, ArrayList<String> mImages, ArrayList<String> mImageTitles,
-                               ArrayList<Integer> mQuantity, ArrayList<Double> mPrice, ArrayList<Integer> mCode, String userType,
-                               int userId) {
+    public RecyclerViewAdapterProduct(Context mContext, ArrayList<String> mImages, ArrayList<String> mImageTitles,
+                                      ArrayList<Integer> mQuantity, ArrayList<Double> mPrice, ArrayList<Integer> mCode, String userType,
+                                      int userId) {
         this.mContext = mContext;
         this.mImageTitles = mImageTitles;
         this.mImages = mImages;

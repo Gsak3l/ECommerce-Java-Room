@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:id="@+id/order_parent_layout">
 
 
     <LinearLayout
@@ -23,7 +24,6 @@
             android:id="@+id/order_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
@@ -36,7 +36,6 @@
             android:id="@+id/order_product_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
@@ -49,11 +48,10 @@
             android:id="@+id/order_product_quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
-            android:text="18"
+            android:text="22"
             android:textColor="#000"
             android:textSize="17sp" />
 
@@ -62,14 +60,21 @@
             android:id="@+id/order_total_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
-            android:text="18"
+            android:text="199"
             android:textColor="#000"
             android:textSize="17sp" />
 
+        <ImageView
+            android:id="@+id/order_cancel_order"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/cancel_icon_red_24dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            />
 
     </LinearLayout>
 

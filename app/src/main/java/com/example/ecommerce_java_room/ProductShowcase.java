@@ -87,7 +87,7 @@ public class ProductShowcase extends AppCompatActivity {
 
     private void initRecyclerView(String userType, int userId) {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, productImageUrl, productTitles,
+        RecyclerViewAdapterProduct adapter = new RecyclerViewAdapterProduct(this, productImageUrl, productTitles,
                 productQuantity, productPrice, productCode, userType, userId);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
