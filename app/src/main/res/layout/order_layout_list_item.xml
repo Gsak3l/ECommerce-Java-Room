@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--circle icons for the order page-->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/order_product_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="2"
+            android:src="@mipmap/ic_launcher" />
+
+        <!--id of the order-->
+        <TextView
+            android:id="@+id/order_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:text="11"
+            android:textColor="#000"
+            android:textSize="17sp" />
+
+        <!--id of the product contained in the order-->
+        <TextView
+            android:id="@+id/order_product_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:text="18"
+            android:textColor="#000"
+            android:textSize="17sp" />
+
+        <!--pieces of the product purchased-->
+        <TextView
+            android:id="@+id/order_product_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:text="18"
+            android:textColor="#000"
+            android:textSize="17sp" />
+
+        <!--total price of the order-->
+        <TextView
+            android:id="@+id/order_total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:text="18"
+            android:textColor="#000"
+            android:textSize="17sp" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
