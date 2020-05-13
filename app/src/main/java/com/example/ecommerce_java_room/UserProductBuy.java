@@ -57,10 +57,12 @@ public class UserProductBuy extends AppCompatActivity {
     private PrimaryDrawerItem orderHistory;
     private PrimaryDrawerItem availability;
     private AccountHeader accountHeader;
-    //
+    //user id
     private int userId;
     //id that comes from the clicked product on the productshowcase page
     private int productId;
+    //recycle view lists
+
 
 
     @Override
@@ -102,7 +104,7 @@ public class UserProductBuy extends AppCompatActivity {
                 int quantity = productQuantity.getValue(); //works
                 if (quantity != 0) {
                     double orderPrice = Double.parseDouble(df.format(product.getPrice() * quantity));
-                    productDAO.updateQuantity(productId, quantity);
+                    productDAO.updateQuantity(productId, -1 * quantity);
                     Order order = new Order(productId, userId, orderPrice, quantity);
                     orderDAO.insert(order);
                     Toast.makeText(UserProductBuy.this, "Success!", Toast.LENGTH_LONG).show();

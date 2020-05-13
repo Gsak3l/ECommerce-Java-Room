@@ -13,7 +13,8 @@ import java.util.List;
 public interface OrderDAO {
 
     //get order by id
-    @Query("SELECT * FROM [Order] WHERE id = :id") //reserved word ftw....
+    @Query("SELECT * FROM [Order] WHERE id = :id")
+    //reserved word ftw....
     Order getOrderById(int id); //i wasted 45 minutes on nothing :D
 
     @Insert
@@ -27,6 +28,15 @@ public interface OrderDAO {
     @Query("UPDATE [Order] SET orderProductQuantity = :orderProductQuantity")
     void updateOrderQuantity(int orderProductQuantity);
 
+    //getting all orders
     @Query("SELECT * FROM [Order]")
     List<Order> getAllOrders();
+
+    //deleting a specific order
+    @Query("DELETE FROM [Order] WHERE id= :id")
+    void deleteOrder(int id);
+
+    //delete all orders
+    @Query("DELETE FROM [Order]")
+    void deleteAllOrders();
 }
