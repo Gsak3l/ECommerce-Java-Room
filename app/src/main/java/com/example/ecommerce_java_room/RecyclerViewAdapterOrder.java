@@ -37,10 +37,10 @@ public class RecyclerViewAdapterOrder extends RecyclerView.Adapter<RecyclerViewA
     private ArrayList<Double> orderTotalPrice = new ArrayList<>();
     private Context orderContext;
     //minimizing the decimal length of a double
-    DecimalFormat df = new DecimalFormat();
+    private DecimalFormat df = new DecimalFormat();
     //database stuff
-    OrderDAO orderDAO;
-    ProductDAO productDAO;
+    private OrderDAO orderDAO;
+    private ProductDAO productDAO;
 
 
     //constructor
