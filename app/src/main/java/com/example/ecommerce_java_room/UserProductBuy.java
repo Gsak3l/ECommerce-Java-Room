@@ -138,10 +138,7 @@ public class UserProductBuy extends AppCompatActivity {
                 withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        Intent intent = new Intent(UserProductBuy.this, OrderShowcase.class);
                         Toast.makeText(UserProductBuy.this, "Order History", Toast.LENGTH_LONG).show();
-                        intent.putExtra("userId", userId);
-                        startActivity(intent);
                         return false;
                     }
                 });

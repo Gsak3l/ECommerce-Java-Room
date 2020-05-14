@@ -142,31 +142,32 @@
 
         </LinearLayout>
 
-        <!--FLOATING BUTTON FOR THE CONFIRMATION-->
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/add_new_product_confirm_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="20dp"
-            android:src="@drawable/check_icon_white_24dp"
-            app:backgroundTint="@color/colorPrimary" />
-
-        <!--FLOATING BUTTON HIDDEN FOR DELETING A PRODUCT
-        I AM ACTIVATING THIS ONE WITH JAVA-->
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/delete_product_confirm_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="90dp"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/delete_icon_white_24dp"
-            android:visibility="invisible"
-            app:backgroundTint="@android:color/holo_red_dark" />
 
     </LinearLayout>
+
+    <!--FLOATING BUTTON FOR THE CONFIRMATION-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_new_product_confirm_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:src="@drawable/check_icon_white_24dp"
+        app:backgroundTint="@color/colorPrimary" />
+
+    <!--FLOATING BUTTON HIDDEN FOR DELETING A PRODUCT
+    I AM ACTIVATING THIS ONE WITH JAVA-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/delete_product_confirm_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="90dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/delete_icon_white_24dp"
+        android:visibility="invisible"
+        app:backgroundTint="@android:color/holo_red_dark" />
 
 </RelativeLayout>
