@@ -61,6 +61,16 @@ public class ProductShowcase extends AppCompatActivity {
         if (userType.equals("user")) {
             basket.setVisibility(View.VISIBLE);
             addNewProduct.setVisibility(View.INVISIBLE);
+            basket.setOnClickListener(new View.OnClickListener() { //onclick listener for the floating button
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ProductShowcase.this, OrderShowcase.class);
+                    intent.putExtra("userId", userId);
+                    intent.putExtra("userType", userType);
+                    Toast.makeText(ProductShowcase.this, "Order History", Toast.LENGTH_LONG).show();
+                    startActivity(intent);
+                }
+            });
         }
         //showing different buttons for user and admin
         addNewProduct.setOnClickListener(new View.OnClickListener() {

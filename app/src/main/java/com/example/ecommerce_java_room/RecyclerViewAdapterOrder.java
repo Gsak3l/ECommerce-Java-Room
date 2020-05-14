@@ -88,6 +88,16 @@ public class RecyclerViewAdapterOrder extends RecyclerView.Adapter<RecyclerViewA
                 holder.cancelOrder.setVisibility(View.INVISIBLE);
                 holder.orderImage.getLayoutParams().height = 0;
                 holder.orderImage.getLayoutParams().width = 0;
+                holder.orderId.getLayoutParams().height = 0;
+                holder.orderId.getLayoutParams().width = 0;
+                holder.productId.getLayoutParams().height = 0;
+                holder.productId.getLayoutParams().width = 0;
+                holder.orderQuantity.getLayoutParams().height = 0;
+                holder.orderQuantity.getLayoutParams().width = 0;
+                holder.totalPrice.getLayoutParams().height = 0;
+                holder.totalPrice.getLayoutParams().width = 0;
+                holder.cancelOrder.getLayoutParams().height = 0;
+                holder.cancelOrder.getLayoutParams().width = 0;
 
                 //deleting the order from the database and updating the product quantity again
                 orderDAO.deleteOrder(orderIds.get(position));

@@ -34,7 +34,7 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        userType = getIntent().getExtras().get("type").toString();
+        userType = getIntent().getExtras().get("userType").toString();
         userId = Integer.parseInt(getIntent().getExtras().get("userId").toString());
         Toast.makeText(MainMenuActivity.this, "Products", Toast.LENGTH_LONG).show();
 

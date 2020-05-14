@@ -50,6 +50,7 @@ public class OrderShowcase extends AppCompatActivity {
     private UserDAO userDAO;
     //others
     private int userId;
+    private String userType;
     //drawer stuff
     private Toolbar toolbar;
     private PrimaryDrawerItem homeNav;
@@ -62,6 +63,7 @@ public class OrderShowcase extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_showcase);
         userId = Integer.parseInt(getIntent().getExtras().get("userId").toString());
+        userType = getIntent().getExtras().get("userType").toString();
         productDAO = Room.databaseBuilder(this, ProductDatabase.class, "Product")
                 .allowMainThreadQueries().build().getProductDao();
         orderDAO = Room.databaseBuilder(this, OrderDatabase.class, "Order")
@@ -79,6 +81,7 @@ public class OrderShowcase extends AppCompatActivity {
         List<Order> userOrders;
         if (userId == -1) {
             userOrders = orderDAO.getAllOrders();
+            System.out.println("-----------");
         } else {
             userOrders = orderDAO.getUserOrders(userId);
         }
@@ -106,14 +109,23 @@ public class OrderShowcase extends AppCompatActivity {
 
     private void setToolbar() {
         //creating everything that will be contained in the drawer
-        User user = userDAO.getUserById(userId);
+        if (userId == -1) {
+            accountHeader = new AccountHeaderBuilder().withActivity(this).withTranslucentStatusBar(true)
+                    .addProfiles(new ProfileDrawerItem().withName("admin").withEmail("admin@admin.admin"))
+                    .build();
+        } else {
+            User user = userDAO.getUserById(userId);
+            accountHeader = new AccountHeaderBuilder().withActivity(this).withTranslucentStatusBar(true)
+                    .addProfiles(new ProfileDrawerItem().withName(user.getFullName()).withEmail(user.getEmail()))
+                    .build();
+        }
         //on home nav home button click
         homeNav = new PrimaryDrawerItem().withName("Home").withIcon(FontAwesome.Icon.faw_home)
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         Intent intent = new Intent(OrderShowcase.this, MainMenuActivity.class);
-                        intent.putExtra("type", "user");
+                        intent.putExtra("type", userType);
                         intent.putExtra("userId", userId);
                         startActivity(intent);
                         return false;
@@ -124,7 +136,7 @@ public class OrderShowcase extends AppCompatActivity {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         Intent intent = new Intent(OrderShowcase.this, OrderShowcase.class);
-                        intent.putExtra("type", "user");
+                        intent.putExtra("type", userType);
                         intent.putExtra("userId", userId);
                         Toast.makeText(OrderShowcase.this, "Order History", Toast.LENGTH_LONG).show();
                         startActivity(intent);
@@ -136,15 +148,13 @@ public class OrderShowcase extends AppCompatActivity {
             @Override
             public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                 Intent intent = new Intent(OrderShowcase.this, ProductSearch.class);
-                intent.putExtra("type", "user");
+                intent.putExtra("type", userType);
                 intent.putExtra("userId", userId);
                 startActivity(intent);
                 return false;
             }
         });
-        accountHeader = new AccountHeaderBuilder().withActivity(this).withTranslucentStatusBar(true)
-                .addProfiles(new ProfileDrawerItem().withName(user.getFullName()).withEmail(user.getEmail()))
-                .build();
+
         //giving color to the drawer
         toolbar.setBackground(ResourcesCompat.getDrawable(getResources(), R.color.primary_dark, null));
         //adding options to the drawer
@@ -155,7 +165,7 @@ public class OrderShowcase extends AppCompatActivity {
                 availability
         ).build();
         drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Logout").withIcon(FontAwesome.Icon.faw_sign_out));
-        //drawer.setSelection(3);
+        drawer.setSelection(0);
     }
 
 
