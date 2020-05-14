@@ -22,7 +22,6 @@
             android:textStyle="bold" />
 
 
-
         <!--recycler view for the orders-->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/order_recycler_view"

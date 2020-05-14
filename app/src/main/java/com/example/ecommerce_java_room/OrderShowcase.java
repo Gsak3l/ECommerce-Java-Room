@@ -47,7 +47,12 @@ public class OrderShowcase extends AppCompatActivity {
 
     //giving the order info to the arrays
     private void initOrderInfo() {
-        List<Order> userOrders = orderDAO.getUserOrders(userId);
+        List<Order> userOrders;
+        if (userId == -1) {
+            userOrders = orderDAO.getAllOrders();
+        } else {
+            userOrders = orderDAO.getUserOrders(userId);
+        }
         for (int i = 0; i < userOrders.size(); i++) {
             //adding the image of the product to the orderImages array
             Product product = productDAO.getProduct(userOrders.get(i).getProductId());

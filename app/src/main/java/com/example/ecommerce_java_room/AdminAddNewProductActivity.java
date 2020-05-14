@@ -248,6 +248,10 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
                 withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        Intent intent = new Intent(AdminAddNewProductActivity.this, OrderShowcase.class);
+                        intent.putExtra("userId", -1);
+                        Toast.makeText(AdminAddNewProductActivity.this, "Order History", Toast.LENGTH_LONG).show();
+                        startActivity(intent);
                         return false;
                     }
                 });
