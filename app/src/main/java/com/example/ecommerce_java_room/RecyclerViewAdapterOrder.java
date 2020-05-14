@@ -75,7 +75,7 @@ public class RecyclerViewAdapterOrder extends RecyclerView.Adapter<RecyclerViewA
         holder.orderId.setText(orderIds.get(position)); //order id
         holder.productId.setText(orderProductIds.get(position)); //order product id
         holder.orderQuantity.setText(orderProductQuantity.get(position)); //order quantity
-        holder.totalPrice.setText(df.format(orderTotalPrice.get(position))); //cancel order button
+        holder.totalPrice.setText(df.format(orderTotalPrice.get(position)) + "$"); //cancel order button
         holder.cancelOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { //canceling the order whenever user clicks cancel
@@ -95,10 +95,6 @@ public class RecyclerViewAdapterOrder extends RecyclerView.Adapter<RecyclerViewA
         });
     }
 
-    @Override
-    public int getItemCount() { //this tells the adapter how many list items exist
-        return orderIds.size();
-    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -120,5 +116,10 @@ public class RecyclerViewAdapterOrder extends RecyclerView.Adapter<RecyclerViewA
             totalPrice = itemView.findViewById(R.id.order_total_price);
             cancelOrder = itemView.findViewById(R.id.order_cancel_order);
         }
+    }
+
+    @Override
+    public int getItemCount() { //this tells the adapter how many list items exist
+        return orderIds.size();
     }
 }

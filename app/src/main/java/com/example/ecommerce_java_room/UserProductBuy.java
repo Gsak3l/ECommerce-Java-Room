@@ -10,6 +10,7 @@ import androidx.room.RoomDatabase;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -64,12 +65,6 @@ public class UserProductBuy extends AppCompatActivity {
     private int userId;
     //id that comes from the clicked product on the productshowcase page
     private int productId;
-    //recycle view lists
-    private ArrayList<String> orderImages;
-    private ArrayList<Integer> orderIds;
-    private ArrayList<Integer> orderProductIds;
-    private ArrayList<Integer> orderProductQuantity;
-    private ArrayList<Double> orderTotalPrice;
 
 
     @Override
@@ -123,31 +118,6 @@ public class UserProductBuy extends AppCompatActivity {
         });
     }
 
-    //initializing and sending the values to RecyclerViewAdapter
-    private void initOrderRecyclerView() {
-        RecyclerView orderRecyclerView = findViewById(R.id.order_recyclerview);
-        RecyclerViewAdapterOrder orderAdapter = new RecyclerViewAdapterOrder(this,
-                orderImages, orderIds, orderProductIds, orderProductQuantity, orderTotalPrice);
-        orderRecyclerView.setAdapter(orderAdapter); //setting the adapter to the recycler view
-        orderRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }
-
-    //giving values to the arrays at the top
-    private void initOrderDetails() {
-        List<Order> userOrders = orderDAO.getUserOrders(userId);
-        for (int i = 0; i < userOrders.size(); i++) {
-            //getting the product that has the productId from the order
-            //images for the circle image
-            orderImages.add("https://preview.redd.it/gk5hz3ww2gy41.jpg?width=640&crop=smart&auto=webp&s=2089aa437d9154f0d91806d8b33b131d118f888c");
-            //other
-            orderIds.add(orderDAO.getOrderById(productId).getId());
-            orderProductIds.add(orderDAO.getOrderById(productId).getProductId());
-            orderProductQuantity.add(orderDAO.getOrderById(productId).getOrderProductQuantity());
-            orderTotalPrice.add(orderDAO.getOrderById(productId).getOrderPrice());
-            //calling initOrderRecyclerView
-            initOrderRecyclerView();
-        }
-    }
 
     private void setToolbar() {
         //creating everything that will be contained in the drawer
@@ -168,8 +138,9 @@ public class UserProductBuy extends AppCompatActivity {
                 withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        initOrderDetails();
-                        Intent intent = new Intent(UserProductBuy.this, RecyclerViewAdapterOrder.class);
+                        Intent intent = new Intent(UserProductBuy.this, OrderShowcase.class);
+                        Toast.makeText(UserProductBuy.this, "Order History", Toast.LENGTH_LONG).show();
+                        intent.putExtra("userId", userId);
                         startActivity(intent);
                         return false;
                     }
@@ -178,7 +149,8 @@ public class UserProductBuy extends AppCompatActivity {
         availability = new PrimaryDrawerItem().withName("Product Availability").withIcon(FontAwesome.Icon.faw_list).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
             @Override
             public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                Intent intent = new Intent(UserProductBuy.this, ProductSearch.class);
+                Intent intent = new Intent();
+                intent.setClass(UserProductBuy.this, RecyclerViewAdapterOrder.class);
                 startActivity(intent);
                 return false;
             }
