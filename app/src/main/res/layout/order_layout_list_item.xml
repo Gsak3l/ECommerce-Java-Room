@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/order_parent_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    android:id="@+id/order_parent_layout">
+    android:padding="10dp">
 
 
     <LinearLayout
@@ -63,7 +63,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
-            android:text="199"
+            android:text="199$"
             android:textColor="#000"
             android:textSize="17sp" />
 
@@ -71,10 +71,9 @@
             android:id="@+id/order_cancel_order"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/cancel_icon_red_24dp"
-            android:layout_weight="1"
             android:layout_gravity="center_vertical"
-            />
+            android:layout_weight="1"
+            android:src="@drawable/cancel_icon_red_24dp" />
 
     </LinearLayout>
 

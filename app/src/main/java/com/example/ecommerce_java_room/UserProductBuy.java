@@ -138,7 +138,10 @@ public class UserProductBuy extends AppCompatActivity {
                 withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        Intent intent = new Intent(UserProductBuy.this, OrderShowcase.class);
+                        intent.putExtra("userId", userId);
                         Toast.makeText(UserProductBuy.this, "Order History", Toast.LENGTH_LONG).show();
+                        startActivity(intent);
                         return false;
                     }
                 });
@@ -147,7 +150,7 @@ public class UserProductBuy extends AppCompatActivity {
             @Override
             public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                 Intent intent = new Intent();
-                intent.setClass(UserProductBuy.this, RecyclerViewAdapterOrder.class);
+                intent.setClass(UserProductBuy.this, ProductSearch.class);
                 startActivity(intent);
                 return false;
             }
