@@ -1,18 +1,35 @@
 package com.example.ecommerce_java_room;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.ecommerce_java_room.data.OrderDAO;
 import com.example.ecommerce_java_room.data.OrderDatabase;
 import com.example.ecommerce_java_room.data.ProductDAO;
 import com.example.ecommerce_java_room.data.ProductDatabase;
+import com.example.ecommerce_java_room.data.UserDAO;
+import com.example.ecommerce_java_room.data.UserDatabase;
 import com.example.ecommerce_java_room.model.Order;
 import com.example.ecommerce_java_room.model.Product;
+import com.example.ecommerce_java_room.model.User;
+import com.mikepenz.fontawesome_typeface_library.FontAwesome;
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -30,8 +47,15 @@ public class OrderShowcase extends AppCompatActivity {
     //database stuff
     private OrderDAO orderDAO;
     private ProductDAO productDAO;
+    private UserDAO userDAO;
     //others
     private int userId;
+    //drawer stuff
+    private Toolbar toolbar;
+    private PrimaryDrawerItem homeNav;
+    private PrimaryDrawerItem orderHistory;
+    private PrimaryDrawerItem availability;
+    private AccountHeader accountHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +66,12 @@ public class OrderShowcase extends AppCompatActivity {
                 .allowMainThreadQueries().build().getProductDao();
         orderDAO = Room.databaseBuilder(this, OrderDatabase.class, "Order")
                 .allowMainThreadQueries().build().getOrderDao();
+        userDAO = Room.databaseBuilder(this, UserDatabase.class, "User").
+                allowMainThreadQueries().build().getUserDao();
         initOrderInfo();
+        toolbar = findViewById(R.id.toolbar_buy);
+        //setting up the tool bar
+        setToolbar();
     }
 
     //giving the order info to the arrays
@@ -73,6 +102,60 @@ public class OrderShowcase extends AppCompatActivity {
                 orderImages, orderIds, orderProductIds, orderProductQuantity, orderTotalPrice);
         recyclerView.setAdapter(recyclerViewAdapterOrder);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void setToolbar() {
+        //creating everything that will be contained in the drawer
+        User user = userDAO.getUserById(userId);
+        //on home nav home button click
+        homeNav = new PrimaryDrawerItem().withName("Home").withIcon(FontAwesome.Icon.faw_home)
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        Intent intent = new Intent(OrderShowcase.this, MainMenuActivity.class);
+                        intent.putExtra("type", "user");
+                        intent.putExtra("userId", userId);
+                        startActivity(intent);
+                        return false;
+                    }
+                });
+        orderHistory = new PrimaryDrawerItem().withName("Order History").withIcon(FontAwesome.Icon.faw_history).
+                withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        Intent intent = new Intent(OrderShowcase.this, OrderShowcase.class);
+                        intent.putExtra("type", "user");
+                        intent.putExtra("userId", userId);
+                        Toast.makeText(OrderShowcase.this, "Order History", Toast.LENGTH_LONG).show();
+                        startActivity(intent);
+                        return false;
+                    }
+                });
+        //on product availability click listener
+        availability = new PrimaryDrawerItem().withName("Product Availability").withIcon(FontAwesome.Icon.faw_list).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+            @Override
+            public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                Intent intent = new Intent(OrderShowcase.this, ProductSearch.class);
+                intent.putExtra("type", "user");
+                intent.putExtra("userId", userId);
+                startActivity(intent);
+                return false;
+            }
+        });
+        accountHeader = new AccountHeaderBuilder().withActivity(this).withTranslucentStatusBar(true)
+                .addProfiles(new ProfileDrawerItem().withName(user.getFullName()).withEmail(user.getEmail()))
+                .build();
+        //giving color to the drawer
+        toolbar.setBackground(ResourcesCompat.getDrawable(getResources(), R.color.primary_dark, null));
+        //adding options to the drawer
+        Drawer drawer = new DrawerBuilder().withActivity(this).withToolbar(toolbar).withAccountHeader(accountHeader).addDrawerItems(
+                homeNav,
+                orderHistory,
+                new DividerDrawerItem(),
+                availability
+        ).build();
+        drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Logout").withIcon(FontAwesome.Icon.faw_sign_out));
+        //drawer.setSelection(3);
     }
 
 

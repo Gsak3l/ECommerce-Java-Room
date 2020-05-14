@@ -11,10 +11,16 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.bumptech.glide.Glide;
 import com.example.ecommerce_java_room.data.OrderDAO;
+import com.example.ecommerce_java_room.data.OrderDatabase;
 import com.example.ecommerce_java_room.data.ProductDAO;
+import com.example.ecommerce_java_room.data.ProductDatabase;
+import com.example.ecommerce_java_room.data.UserDAO;
+import com.example.ecommerce_java_room.data.UserDatabase;
+import com.example.ecommerce_java_room.model.Order;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -35,6 +41,7 @@ public class RecyclerViewAdapterOrder extends RecyclerView.Adapter<RecyclerViewA
     //database stuff
     private OrderDAO orderDAO;
     private ProductDAO productDAO;
+    private UserDAO userDAO;
 
 
     //constructor
@@ -53,6 +60,12 @@ public class RecyclerViewAdapterOrder extends RecyclerView.Adapter<RecyclerViewA
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_layout_list_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
+        productDAO = Room.databaseBuilder(orderContext, ProductDatabase.class, "Product")
+                .allowMainThreadQueries().build().getProductDao();
+        orderDAO = Room.databaseBuilder(orderContext, OrderDatabase.class, "Order")
+                .allowMainThreadQueries().build().getOrderDao();
+        userDAO = Room.databaseBuilder(orderContext, UserDatabase.class, "User").
+                allowMainThreadQueries().build().getUserDao();
         return viewHolder;
     }
 
@@ -73,6 +86,9 @@ public class RecyclerViewAdapterOrder extends RecyclerView.Adapter<RecyclerViewA
                 holder.orderQuantity.setVisibility(View.INVISIBLE);
                 holder.totalPrice.setVisibility(View.INVISIBLE);
                 holder.cancelOrder.setVisibility(View.INVISIBLE);
+                holder.orderImage.getLayoutParams().height = 0;
+                holder.orderImage.getLayoutParams().width = 0;
+
                 //deleting the order from the database and updating the product quantity again
                 orderDAO.deleteOrder(orderIds.get(position));
                 productDAO.updateQuantity(orderProductIds.get(position), orderProductQuantity.get(position));

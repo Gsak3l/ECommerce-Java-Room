@@ -5,30 +5,70 @@
     android:layout_height="match_parent"
     tools:context=".OrderShowcase">
 
-    <!--relative layout used for the scroll view-->
+    <!--main container-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/order_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:text="Order History"
-            android:textAlignment="center"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-
-        <!--recycler view for the orders-->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/order_recycler_view"
+        <!--drawer-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/order_title">
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
 
-        </androidx.recyclerview.widget.RecyclerView>
+
+            <!--toolbar for the user-->
+            <FrameLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar_buy"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:theme="@style/MyActionBar" />
+                </LinearLayout>
+
+            </FrameLayout>
+
+
+            <!--rest of the page-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/order_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="Order History"
+                    android:textAlignment="center"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+
+                <!--recycler view for the orders-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/order_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/order_title">
+
+                </androidx.recyclerview.widget.RecyclerView>
+            </RelativeLayout>
+
+        </LinearLayout>
+
     </RelativeLayout>
+
 </ScrollView>
