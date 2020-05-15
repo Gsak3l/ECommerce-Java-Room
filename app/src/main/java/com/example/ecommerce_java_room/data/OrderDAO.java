@@ -40,4 +40,8 @@ public interface OrderDAO {
     //delete all orders
     @Query("DELETE FROM [Order]")
     void deleteAllOrders();
+
+    //get orders by product
+    @Query("SELECT * FROM [Order] WHERE productId = :productId")
+    List<Order> getProductOrders(int productId);
 }

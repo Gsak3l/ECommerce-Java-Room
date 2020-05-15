@@ -14,10 +14,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.ecommerce_java_room.data.OrderDAO;
+import com.example.ecommerce_java_room.data.OrderDatabase;
 import com.example.ecommerce_java_room.data.ProductDAO;
 import com.example.ecommerce_java_room.data.ProductDatabase;
 import com.example.ecommerce_java_room.data.UserDAO;
 import com.example.ecommerce_java_room.data.UserDatabase;
+import com.example.ecommerce_java_room.model.Order;
 import com.example.ecommerce_java_room.model.Product;
 import com.example.ecommerce_java_room.model.User;
 import com.google.android.material.textfield.TextInputLayout;
@@ -47,6 +50,7 @@ public class ProductSearch extends AppCompatActivity {
     //database stuff
     private ProductDAO productDAO;
     private UserDAO userDAO;
+    private OrderDAO orderDAO;
     //drawer stuff
     private Toolbar toolbar;
     private PrimaryDrawerItem homeNav;
@@ -74,25 +78,46 @@ public class ProductSearch extends AppCompatActivity {
                 .allowMainThreadQueries().build().getProductDao();
         userDAO = Room.databaseBuilder(this, UserDatabase.class, "User").
                 allowMainThreadQueries().build().getUserDao();
-        //showing different results for the admin
-        if(userId == -1) {
-            searchButton.setText("Check Details");
-
-        }
+        orderDAO = Room.databaseBuilder(this, OrderDatabase.class, "Order")
+                .allowMainThreadQueries().build().getOrderDao();
         //onclick for the button
+        //showing different results for the admin
+        if (userId == -1) {
+            searchButton.setText("Check Details");
+        }
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!searchId.getEditText().getText().toString().trim().equals("")) {
                     try {
-                        Product product = productDAO.getProduct(Integer.parseInt(searchId.getEditText().getText().toString().trim()));
-                        showAvailability.setText("Product Stock: " + product.getQuantity());
-                        showAvailability.setVisibility(View.VISIBLE);
-                        Picasso.get().load(product.getImageURL()).into(showImage);
-                        showImage.setVisibility(View.VISIBLE);
-                        showImage.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
-                        showImage.getLayoutParams().height = 900;
-                        searchId.getEditText().setText("");
+                        //showing different results for the admin
+                        if (userId == -1) {
+                            //doing some extra things that i don't want to, but i have to
+                            Product product = productDAO.getProduct(Integer.parseInt(searchId.getEditText().getText().toString().trim()));
+                            List<Order> productOrders = orderDAO.getProductOrders(Integer.parseInt(searchId.getEditText().getText().toString().trim()));
+                            int productPieces = 0;
+                            for (int i = 0; i < productOrders.size(); i++) {
+                                productPieces += productOrders.get(i).getOrderProductQuantity();
+                            }
+                            showAvailability.setText("Product Stock: " + product.getQuantity() + ", " +
+                                    "Total Sales: " + orderDAO.getAllOrders().size() + "\n" +
+                                    "Total Pieces Sold for this Item: " + productPieces);
+                            showAvailability.setVisibility(View.VISIBLE);
+                            Picasso.get().load(product.getImageURL()).into(showImage);
+                            showImage.setVisibility(View.VISIBLE);
+                            showImage.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
+                            showImage.getLayoutParams().height = 900;
+                            searchId.getEditText().setText("");
+                        } else {
+                            Product product = productDAO.getProduct(Integer.parseInt(searchId.getEditText().getText().toString().trim()));
+                            showAvailability.setText("Product Stock: " + product.getQuantity());
+                            showAvailability.setVisibility(View.VISIBLE);
+                            Picasso.get().load(product.getImageURL()).into(showImage);
+                            showImage.setVisibility(View.VISIBLE);
+                            showImage.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
+                            showImage.getLayoutParams().height = 900;
+                            searchId.getEditText().setText("");
+                        }
                     } catch (NullPointerException e) {
                         Toast.makeText(ProductSearch.this, "Product not Found", Toast.LENGTH_SHORT).show();
                     }
@@ -160,6 +185,13 @@ public class ProductSearch extends AppCompatActivity {
                 new DividerDrawerItem(),
                 availability
         ).build();
-        drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Logout").withIcon(FontAwesome.Icon.faw_sign_out));
+        drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Logout").withIcon(FontAwesome.Icon.faw_sign_out).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+            @Override
+            public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                Intent intent = new Intent(ProductSearch.this, MainActivity.class);
+                startActivity(intent);
+                return false;
+            }
+        }));
     }
 }

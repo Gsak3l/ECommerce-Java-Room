@@ -81,7 +81,6 @@ public class OrderShowcase extends AppCompatActivity {
         List<Order> userOrders;
         if (userId == -1) {
             userOrders = orderDAO.getAllOrders();
-            System.out.println("-----------");
         } else {
             userOrders = orderDAO.getUserOrders(userId);
         }
@@ -164,7 +163,14 @@ public class OrderShowcase extends AppCompatActivity {
                 new DividerDrawerItem(),
                 availability
         ).build();
-        drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Logout").withIcon(FontAwesome.Icon.faw_sign_out));
+        drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Logout").withIcon(FontAwesome.Icon.faw_sign_out).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+            @Override
+            public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                Intent intent = new Intent(OrderShowcase.this, MainActivity.class);
+                startActivity(intent);
+                return false;
+            }
+        }));
     }
 
 
