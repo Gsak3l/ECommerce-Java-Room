@@ -53,7 +53,7 @@
                     android:layout_marginBottom="15dp"
                     android:text="Order History"
                     android:textAlignment="center"
-                    android:textSize="22sp"
+                    android:textSize="26sp"
                     android:textStyle="bold" />
 
 

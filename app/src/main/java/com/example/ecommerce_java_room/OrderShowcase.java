@@ -125,7 +125,7 @@ public class OrderShowcase extends AppCompatActivity {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         Intent intent = new Intent(OrderShowcase.this, MainMenuActivity.class);
-                        intent.putExtra("type", userType);
+                        intent.putExtra("userType", userType);
                         intent.putExtra("userId", userId);
                         startActivity(intent);
                         return false;
@@ -136,7 +136,7 @@ public class OrderShowcase extends AppCompatActivity {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         Intent intent = new Intent(OrderShowcase.this, OrderShowcase.class);
-                        intent.putExtra("type", userType);
+                        intent.putExtra("userType", userType);
                         intent.putExtra("userId", userId);
                         Toast.makeText(OrderShowcase.this, "Order History", Toast.LENGTH_LONG).show();
                         startActivity(intent);
@@ -148,7 +148,7 @@ public class OrderShowcase extends AppCompatActivity {
             @Override
             public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                 Intent intent = new Intent(OrderShowcase.this, ProductSearch.class);
-                intent.putExtra("type", userType);
+                intent.putExtra("userType", userType);
                 intent.putExtra("userId", userId);
                 startActivity(intent);
                 return false;
@@ -165,7 +165,6 @@ public class OrderShowcase extends AppCompatActivity {
                 availability
         ).build();
         drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Logout").withIcon(FontAwesome.Icon.faw_sign_out));
-        drawer.setSelection(0);
     }
 
 

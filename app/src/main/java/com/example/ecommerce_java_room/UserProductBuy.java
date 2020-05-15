@@ -18,6 +18,7 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.ecommerce_java_room.data.OrderDAO;
 import com.example.ecommerce_java_room.data.OrderDatabase;
 import com.example.ecommerce_java_room.data.ProductDAO;
@@ -91,7 +92,7 @@ public class UserProductBuy extends AppCompatActivity {
         //table that contains all the numbers for the numberPicker
         //giving values to the fields
         productTitle.setText(product.getTitle());
-        Picasso.get().load(product.getImageURL()).into(productImage);
+        Glide.with(this).asBitmap().load(product.getImageURL()).into(productImage);
         productQuantity.setMinValue(0); //setting max and min values for the spinner
         productQuantity.setMaxValue(product.getQuantity() - 1);
         productPrice.setText(df.format(product.getPrice()) + "$");

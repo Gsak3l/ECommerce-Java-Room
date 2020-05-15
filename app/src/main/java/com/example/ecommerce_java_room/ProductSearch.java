@@ -13,6 +13,7 @@ import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.ecommerce_java_room.data.ProductDAO;
 import com.example.ecommerce_java_room.data.ProductDatabase;
 import com.example.ecommerce_java_room.data.UserDAO;
@@ -156,6 +157,5 @@ public class ProductSearch extends AppCompatActivity {
                 availability
         ).build();
         drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Logout").withIcon(FontAwesome.Icon.faw_sign_out));
-        drawer.setSelection(0);
     }
 }

@@ -16,7 +16,7 @@
         android:layout_marginRight="10dp"
         android:text="THIS IS THE TITLE OF THE PRODUCT"
         android:textAlignment="center"
-        android:textSize="22sp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <ImageView

@@ -10,9 +10,10 @@
         android:id="@+id/admin_new_product_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:text="Products"
         android:textAlignment="center"
-        android:textSize="22sp"
+        android:textSize="26sp"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -42,8 +43,8 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
         android:src="@drawable/shopping_cart_icon_white_24dp"
-        app:backgroundTint="@color/colorPrimary"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        app:backgroundTint="@color/colorPrimary" />
 
 
 </RelativeLayout>
