@@ -279,7 +279,14 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
                 new DividerDrawerItem(),
                 availability
         ).build();
-        drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Logout").withIcon(FontAwesome.Icon.faw_sign_out));
+        drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Logout").withIcon(FontAwesome.Icon.faw_sign_out).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+            @Override
+            public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                Intent intent = new Intent(AdminAddNewProductActivity.this, MainActivity.class);
+                startActivity(intent);
+                return false;
+            }
+        }));
     }
 
 }

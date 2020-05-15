@@ -1,6 +1,8 @@
 package com.example.ecommerce_java_room;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -12,7 +14,19 @@ import android.widget.Toast;
 
 import com.example.ecommerce_java_room.data.ProductDAO;
 import com.example.ecommerce_java_room.data.ProductDatabase;
+import com.example.ecommerce_java_room.data.UserDAO;
+import com.example.ecommerce_java_room.data.UserDatabase;
 import com.example.ecommerce_java_room.model.Product;
+import com.example.ecommerce_java_room.model.User;
+import com.mikepenz.fontawesome_typeface_library.FontAwesome;
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +43,17 @@ public class ProductShowcase extends AppCompatActivity {
     private com.google.android.material.floatingactionbutton.FloatingActionButton addNewProduct;
     private com.google.android.material.floatingactionbutton.FloatingActionButton basket;
 
+    //drawer stuff
+    private Toolbar toolbar;
+    private PrimaryDrawerItem homeNav;
+    private PrimaryDrawerItem orderHistory;
+    private PrimaryDrawerItem availability;
+    private AccountHeader accountHeader;
 
     //database stuff
     private ProductDAO productDAO;
-    private ProductDatabase productDatabase;
-    List<Product> products = new ArrayList<>();
+    private UserDAO userDAO;
+    private List<Product> products = new ArrayList<>();
 
     //other stuff
     boolean flag = true;
@@ -53,6 +73,8 @@ public class ProductShowcase extends AppCompatActivity {
         Toast.makeText(this, categoryName, Toast.LENGTH_SHORT).show();
         productDAO = Room.databaseBuilder(this, ProductDatabase.class, "Product")
                 .allowMainThreadQueries().build().getProductDao();
+        userDAO = Room.databaseBuilder(this, UserDatabase.class, "User").
+                allowMainThreadQueries().build().getUserDao();
         //showing images
         initImageBitmaps(userType);
         addNewProduct = (com.google.android.material.floatingactionbutton.FloatingActionButton) findViewById(R.id.admin_add_new_product_button);
@@ -80,6 +102,9 @@ public class ProductShowcase extends AppCompatActivity {
                 startActivity(login);
             }
         });
+        toolbar = findViewById(R.id.toolbar_showcase);
+        //setting up the tool bar
+        setToolbar();
     }
 
     private void initImageBitmaps(String userType) {
@@ -101,5 +126,65 @@ public class ProductShowcase extends AppCompatActivity {
                 productQuantity, productPrice, productCode, userType, userId);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void setToolbar() {
+        //creating everything that will be contained in the drawer
+        if (userId == -1) {
+            accountHeader = new AccountHeaderBuilder().withActivity(this).withTranslucentStatusBar(true)
+                    .addProfiles(new ProfileDrawerItem().withName("admin").withEmail("admin@admin.admin"))
+                    .build();
+        } else {
+            User user = userDAO.getUserById(userId);
+            accountHeader = new AccountHeaderBuilder().withActivity(this).withTranslucentStatusBar(true)
+                    .addProfiles(new ProfileDrawerItem().withName(user.getFullName()).withEmail(user.getEmail()))
+                    .build();
+        }
+        //on home nav home button click
+        homeNav = new PrimaryDrawerItem().withName("Home").withIcon(FontAwesome.Icon.faw_home)
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        Intent intent = new Intent(ProductShowcase.this, MainMenuActivity.class);
+                        intent.putExtra("userType", userType);
+                        intent.putExtra("userId", userId);
+                        startActivity(intent);
+                        return false;
+                    }
+                });
+        orderHistory = new PrimaryDrawerItem().withName("Order History").withIcon(FontAwesome.Icon.faw_history).
+                withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        Intent intent = new Intent(ProductShowcase.this, OrderShowcase.class);
+                        intent.putExtra("userType", userType);
+                        intent.putExtra("userId", userId);
+                        Toast.makeText(ProductShowcase.this, "Order History", Toast.LENGTH_LONG).show();
+                        startActivity(intent);
+                        return false;
+                    }
+                });
+        //on product availability click listener
+        availability = new PrimaryDrawerItem().withName("Product Availability").withIcon(FontAwesome.Icon.faw_list).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+            @Override
+            public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                Intent intent = new Intent(ProductShowcase.this, ProductSearch.class);
+                intent.putExtra("userType", userType);
+                intent.putExtra("userId", userId);
+                startActivity(intent);
+                return false;
+            }
+        });
+        //giving color to the drawer
+        toolbar.setBackground(ResourcesCompat.getDrawable(getResources(), R.color.primary_dark, null));
+        //adding options to the drawer
+        Drawer drawer = new DrawerBuilder().withActivity(this).withToolbar(toolbar).withAccountHeader(accountHeader).addDrawerItems(
+                homeNav,
+                orderHistory,
+                new DividerDrawerItem(),
+                availability
+        ).build();
+        drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Logout").withIcon(FontAwesome.Icon.faw_sign_out));
+        drawer.setSelection(0);
     }
 }

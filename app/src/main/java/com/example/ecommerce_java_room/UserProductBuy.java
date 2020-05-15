@@ -172,6 +172,5 @@ public class UserProductBuy extends AppCompatActivity {
                 availability
         ).build();
         drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Logout").withIcon(FontAwesome.Icon.faw_sign_out));
-        drawer.setSelection(0);
     }
 }

@@ -74,7 +74,11 @@ public class ProductSearch extends AppCompatActivity {
                 .allowMainThreadQueries().build().getProductDao();
         userDAO = Room.databaseBuilder(this, UserDatabase.class, "User").
                 allowMainThreadQueries().build().getUserDao();
+        //showing different results for the admin
+        if(userId == -1) {
+            searchButton.setText("Check Details");
 
+        }
         //onclick for the button
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
