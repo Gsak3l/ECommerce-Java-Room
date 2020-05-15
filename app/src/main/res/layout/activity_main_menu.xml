@@ -4,218 +4,248 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="20dp"
     android:orientation="vertical"
-    tools:context=".MainMenuActivity"
-    android:layout_marginBottom="20dp">
+    tools:context=".MainMenuActivity">
 
+
+    <!--drawer-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
-        <TextView
+
+        <!--toolbar for the user-->
+        <FrameLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Categories"
-            android:textAlignment="center"
-            android:textSize="26sp"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content">
 
-        <!--t-shirts for men-->
-        <TextView
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar_main_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:theme="@style/MyActionBar" />
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <!--rest of the page-->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="T-Shirts for Men"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/male_tshirts"
-            android:layout_width="wrap_content"
-            android:layout_height="500dp"
-            android:src="@drawable/male_tshirt_category" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Categories"
+                android:textAlignment="center"
+                android:textSize="26sp"
+                android:textStyle="bold" />
 
-        <!--dresses for women-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Dresses for Women"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <!--t-shirts for men-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="T-Shirts for Men"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/female_dresses"
-            android:layout_width="wrap_content"
-            android:layout_height="500dp"
-            android:src="@drawable/female_dress_category" />
+            <ImageView
+                android:id="@+id/male_tshirts"
+                android:layout_width="wrap_content"
+                android:layout_height="500dp"
+                android:src="@drawable/male_tshirt_category" />
 
-        <!--trousers for men-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Trousers for Men"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <!--dresses for women-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Dresses for Women"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/male_trousers"
-            android:layout_width="wrap_content"
-            android:layout_height="500dp"
-            android:src="@drawable/male_trousers_category" />
+            <ImageView
+                android:id="@+id/female_dresses"
+                android:layout_width="wrap_content"
+                android:layout_height="500dp"
+                android:src="@drawable/female_dress_category" />
 
-        <!--trousers for women-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Trousers for Women"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <!--trousers for men-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Trousers for Men"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/female_trousers"
-            android:layout_width="wrap_content"
-            android:layout_height="500dp"
-            android:src="@drawable/female_trousers_category" />
+            <ImageView
+                android:id="@+id/male_trousers"
+                android:layout_width="wrap_content"
+                android:layout_height="500dp"
+                android:src="@drawable/male_trousers_category" />
 
-        <!--sweaters for men-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Sweaters for Men"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <!--trousers for women-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Trousers for Women"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/male_sweaters"
-            android:layout_width="wrap_content"
-            android:layout_height="500dp"
-            android:src="@drawable/male_sweater_category" />
+            <ImageView
+                android:id="@+id/female_trousers"
+                android:layout_width="wrap_content"
+                android:layout_height="500dp"
+                android:src="@drawable/female_trousers_category" />
 
-        <!--skirts for women-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Skirts for Women"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <!--sweaters for men-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Sweaters for Men"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/female_skirts"
-            android:layout_width="wrap_content"
-            android:layout_height="500dp"
-            android:src="@drawable/female_skirt_category" />
+            <ImageView
+                android:id="@+id/male_sweaters"
+                android:layout_width="wrap_content"
+                android:layout_height="500dp"
+                android:src="@drawable/male_sweater_category" />
 
-        <!--shoes for men-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Shoes for Men"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <!--skirts for women-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Skirts for Women"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/male_shoes"
-            android:layout_width="wrap_content"
-            android:layout_height="500dp"
-            android:src="@drawable/male_shoes_category" />
+            <ImageView
+                android:id="@+id/female_skirts"
+                android:layout_width="wrap_content"
+                android:layout_height="500dp"
+                android:src="@drawable/female_skirt_category" />
 
-        <!--shoes for women-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Shoes for Women"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <!--shoes for men-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Shoes for Men"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/female_shoes"
-            android:layout_width="wrap_content"
-            android:layout_height="500dp"
-            android:src="@drawable/female_shoes_category" />
+            <ImageView
+                android:id="@+id/male_shoes"
+                android:layout_width="wrap_content"
+                android:layout_height="500dp"
+                android:src="@drawable/male_shoes_category" />
 
-        <!--accessories hats-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Hats"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <!--shoes for women-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Shoes for Women"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/accessories_hat"
-            android:layout_width="wrap_content"
-            android:layout_height="500dp"
-            android:src="@drawable/accessories_hat_category" />
+            <ImageView
+                android:id="@+id/female_shoes"
+                android:layout_width="wrap_content"
+                android:layout_height="500dp"
+                android:src="@drawable/female_shoes_category" />
 
-        <!--watches-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Watches"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <!--accessories hats-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Hats"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/accessories_watch"
-            android:layout_width="wrap_content"
-            android:layout_height="500dp"
-            android:src="@drawable/accessories_watch_category" />
+            <ImageView
+                android:id="@+id/accessories_hat"
+                android:layout_width="wrap_content"
+                android:layout_height="500dp"
+                android:src="@drawable/accessories_hat_category" />
+
+            <!--watches-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Watches"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/accessories_watch"
+                android:layout_width="wrap_content"
+                android:layout_height="500dp"
+                android:src="@drawable/accessories_watch_category" />
 
 
-        <!--bags-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Bags"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <!--bags-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Bags"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/accessories_bag"
-            android:layout_width="wrap_content"
-            android:layout_height="500dp"
-            android:src="@drawable/accessories_bag_category" />
+            <ImageView
+                android:id="@+id/accessories_bag"
+                android:layout_width="wrap_content"
+                android:layout_height="500dp"
+                android:src="@drawable/accessories_bag_category" />
 
-        <!--scarfs-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Scarfs"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <!--scarfs-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Scarfs"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/accessories_scarf"
-            android:layout_width="wrap_content"
-            android:layout_height="500dp"
-            android:src="@drawable/accessories_scarf_category" />
+            <ImageView
+                android:id="@+id/accessories_scarf"
+                android:layout_width="wrap_content"
+                android:layout_height="500dp"
+                android:src="@drawable/accessories_scarf_category" />
 
+        </LinearLayout>
     </LinearLayout>
-
-
 </ScrollView>
