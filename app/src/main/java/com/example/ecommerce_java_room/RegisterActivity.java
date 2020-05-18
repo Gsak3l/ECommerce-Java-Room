@@ -47,12 +47,22 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = registerEmail.getText().toString().trim();
                 String fullName = registerFullName.getText().toString().trim();
                 String password = registerPassword.getText().toString().trim();
-
-                if (password.equals(password)) {
-                    User user = new User(fullName, password, email);
-                    userDAO.insert(user);
-                    Intent moveToLogin = new Intent(RegisterActivity.this, LoginActivity.class);
-                    startActivity(moveToLogin);
+                if (userDAO.getUserEmail(email) == null) { //checking if the user exists
+                    if (password.equals(password) && !fullName.equals("") && !email.equals("")) { //or !password.equals("")
+                        User user = new User(fullName, password, email);
+                        userDAO.insert(user);
+                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                        //emptying the values
+                        registerEmail.setText("");
+                        registerFullName.setText("");
+                        registerPassword.setText("");
+                        Toast.makeText(RegisterActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "Please Fill all the Fields..", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(RegisterActivity.this, "Unable to Create a new Account with this Email Address", Toast.LENGTH_SHORT).show();
                 }
             }
         });

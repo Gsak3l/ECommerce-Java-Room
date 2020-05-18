@@ -14,7 +14,6 @@ import com.example.ecommerce_java_room.data.UserDAO;
 import com.example.ecommerce_java_room.data.UserDatabase;
 import com.example.ecommerce_java_room.model.User;
 
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 

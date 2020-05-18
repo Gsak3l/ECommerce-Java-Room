@@ -55,6 +55,7 @@ public class ProductShowcase extends AppCompatActivity {
     private UserDAO userDAO;
     private List<Product> products = new ArrayList<>();
 
+
     //other stuff
     boolean flag = true;
     private String categoryName;
