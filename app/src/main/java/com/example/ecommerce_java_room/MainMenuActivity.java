@@ -66,18 +66,18 @@ public class MainMenuActivity extends AppCompatActivity {
                 allowMainThreadQueries().build().getUserDao();
 
         //giving reference to all the ImageViews of our xml
-        male_t_shirts = (ImageView) findViewById(R.id.male_tshirts);
-        male_trousers = (ImageView) findViewById(R.id.male_trousers);
-        male_sweater = (ImageView) findViewById(R.id.male_sweaters);
-        male_shoes = (ImageView) findViewById(R.id.male_shoes);
-        female_dress = (ImageView) findViewById(R.id.female_dresses);
-        female_trousers = (ImageView) findViewById(R.id.female_trousers);
-        female_skirt = (ImageView) findViewById(R.id.female_skirts);
-        female_shoes = (ImageView) findViewById(R.id.female_shoes);
-        accessories_bag = (ImageView) findViewById(R.id.accessories_bag);
-        accessories_scarf = (ImageView) findViewById(R.id.accessories_scarf);
-        accessories_hat = (ImageView) findViewById(R.id.accessories_hat);
-        accessories_watch = (ImageView) findViewById(R.id.accessories_watch);
+        male_t_shirts = findViewById(R.id.male_tshirts);
+        male_trousers = findViewById(R.id.male_trousers);
+        male_sweater = findViewById(R.id.male_sweaters);
+        male_shoes = findViewById(R.id.male_shoes);
+        female_dress = findViewById(R.id.female_dresses);
+        female_trousers = findViewById(R.id.female_trousers);
+        female_skirt = findViewById(R.id.female_skirts);
+        female_shoes = findViewById(R.id.female_shoes);
+        accessories_bag = findViewById(R.id.accessories_bag);
+        accessories_scarf = findViewById(R.id.accessories_scarf);
+        accessories_hat = findViewById(R.id.accessories_hat);
+        accessories_watch = findViewById(R.id.accessories_watch);
         toolbar = findViewById(R.id.toolbar_main_menu);
 
 
@@ -264,7 +264,8 @@ public class MainMenuActivity extends AppCompatActivity {
                     }
                 });
         //on product availability click listener
-        availability = new PrimaryDrawerItem().withName("Product Availability").withIcon(FontAwesome.Icon.faw_list).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+        availability = new PrimaryDrawerItem().withName("Product Availability").withIcon(FontAwesome.Icon.faw_list).
+                withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
             @Override
             public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                 Intent intent = new Intent(MainMenuActivity.this, ProductSearch.class);

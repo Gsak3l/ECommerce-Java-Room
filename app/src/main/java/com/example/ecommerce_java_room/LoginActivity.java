@@ -23,7 +23,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText loginPassword;
     //initializing our database stuff
     private UserDAO userDAO;
-    private UserDatabase database;
 
 
     @Override
@@ -37,9 +36,8 @@ public class LoginActivity extends AppCompatActivity {
         loginPassword = findViewById(R.id.login_password);
 
         //getting our database, and allowing it to execute queries
-        database = Room.databaseBuilder(this, UserDatabase.class, "User")
-                .allowMainThreadQueries().build();
-        userDAO = database.getUserDao();
+        userDAO = Room.databaseBuilder(this, UserDatabase.class, "User").
+                allowMainThreadQueries().build().getUserDao();
         //trying to log in with the given credentials
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
