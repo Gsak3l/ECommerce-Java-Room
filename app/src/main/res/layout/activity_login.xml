@@ -52,6 +52,7 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
+    <!--button to login-->
     <Button
         android:id="@+id/login_button"
         android:layout_width="match_parent"
@@ -67,15 +68,6 @@
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
-
-    <!--linear layout for remember me etc-->
-    <LinearLayout
-        android:id="@+id/login_linear_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/login_button"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal"/>
 
 
 </RelativeLayout>

@@ -21,7 +21,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
     private EditText loginEmail;
     private EditText loginPassword;
-
     //initializing our database stuff
     private UserDAO userDAO;
     private UserDatabase database;
@@ -33,16 +32,14 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //getting all the elements from our xml file
-        loginButton = (Button) findViewById(R.id.login_button);
-        loginEmail = (EditText) findViewById(R.id.login_email);
-        loginPassword = (EditText) findViewById(R.id.login_password);
+        loginButton = findViewById(R.id.login_button);
+        loginEmail = findViewById(R.id.login_email);
+        loginPassword = findViewById(R.id.login_password);
 
-
-        //getting our database
+        //getting our database, and allowing it to execute queries
         database = Room.databaseBuilder(this, UserDatabase.class, "User")
                 .allowMainThreadQueries().build();
         userDAO = database.getUserDao();
-
         //trying to log in with the given credentials
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,8 +57,8 @@ public class LoginActivity extends AppCompatActivity {
                     intent = new Intent(LoginActivity.this, MainMenuActivity.class);
                     intent.putExtra("userType", "user");
                     intent.putExtra("userId", user.getId());
-                } else if(userDAO.getUserEmail(email) != null){
-                    Toast.makeText(LoginActivity.this, "Incorrect Password!",  Toast.LENGTH_LONG).show();
+                } else if (userDAO.getUserEmail(email) != null) {
+                    Toast.makeText(LoginActivity.this, "Incorrect Password!", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(LoginActivity.this, "Those Credentials do not match any User. Sign Up Now!",
                             Toast.LENGTH_LONG).show();
