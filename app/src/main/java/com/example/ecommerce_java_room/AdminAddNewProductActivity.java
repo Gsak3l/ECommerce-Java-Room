@@ -85,14 +85,15 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         productTypeSpinner = findViewById(R.id.add_new_product_category);
         confirmAddProductButton = findViewById(R.id.add_new_product_confirm_button);
         deleteProductButton = findViewById(R.id.delete_product_confirm_button);
-        //toolbar
-        toolbar = findViewById(R.id.toolbar_add_admin);
-        setToolbar();
-
         //giving the available values of the typesAvailable list to the spinner
         final ArrayAdapter products = new ArrayAdapter(this, android.R.layout.simple_spinner_item, typesAvailable);
         products.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         productTypeSpinner.setAdapter(products);
+
+        //toolbar
+        toolbar = findViewById(R.id.toolbar_add_admin);
+        setToolbar();
+
 
         //allowing queries
         productDAO = Room.databaseBuilder(this, ProductDatabase.class, "Product")
@@ -102,55 +103,58 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         try {
             editById = Integer.parseInt(getIntent().getExtras().get("productId").toString());
             editProduct(editById);
-
         } catch (NullPointerException e) {
-            System.out.println("just an error");
-
-
-            confirmAddProductButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String toastText = "Please Fill all the Available Fields";
-                    List<Product> products = productDAO.getAllProducts();
-                    if (!productURL.getEditText().getText().toString().trim().matches("") &&
-                            !productTitle.getEditText().getText().toString().trim().matches("") &&
-                            !productPrice.getEditText().getText().toString().trim().matches("") &&
-                            !productQuantity.getEditText().getText().toString().trim().matches("")) {
-
-                        try {
-                            String URL = productURL.getEditText().getText().toString().trim();
-                            String title = productTitle.getEditText().getText().toString().trim();
-                            int quantity = Integer.parseInt(productQuantity.getEditText().getText().toString().trim());
-                            double price = Double.parseDouble(productPrice.getEditText().getText().toString().trim());
-                            String category = typesAvailable.get(productTypeSpinner.getSelectedIndex());
-                            Product product = new Product(URL, title, quantity, price, category);
-                            productDAO.insert(product);
-                            toastText = "Product Created Successfully!";
-
-                            //blanking the fields after the product has been created
-                            productURL.getEditText().setText("");
-                            productTitle.getEditText().setText("");
-                            productQuantity.getEditText().setText("");
-                            productPrice.getEditText().setText("");
-                            //productTypeSpinner.setSelectedIndex(0);
-
-                            products = productDAO.getAllProducts();
-                            System.out.println(products.size());
-                            System.out.println(products.get(0).getCategory());
-
-                        } catch (NumberFormatException e) {
-                            toastText = "Give the Right Values at the Given Fields";
-                        }
-
-                    }
-                    Toast.makeText(AdminAddNewProductActivity.this, toastText, Toast.LENGTH_LONG).show();
-                }
-            });
+            addNewProduct();
         }
     }
 
-    public void editProduct(int id) {
-        final int id2 = id;
+    //admin adding new product
+    public void addNewProduct() {
+        confirmAddProductButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String toastText = "Please Fill all the Available Fields";
+                List<Product> products;
+                //checking if fields are blank
+                if (!productURL.getEditText().getText().toString().trim().matches("") &&
+                        !productTitle.getEditText().getText().toString().trim().matches("") &&
+                        !productPrice.getEditText().getText().toString().trim().matches("") &&
+                        !productQuantity.getEditText().getText().toString().trim().matches("")) {
+
+                    try {
+                        String URL = productURL.getEditText().getText().toString().trim();
+                        String title = productTitle.getEditText().getText().toString().trim();
+                        int quantity = Integer.parseInt(productQuantity.getEditText().getText().toString().trim());
+                        double price = Double.parseDouble(productPrice.getEditText().getText().toString().trim());
+                        String category = typesAvailable.get(productTypeSpinner.getSelectedIndex());
+                        Product product = new Product(URL, title, quantity, price, category);
+                        productDAO.insert(product);
+                        toastText = "Product Created Successfully!";
+
+                        //blanking the fields after the product has been created
+                        productURL.getEditText().setText("");
+                        productTitle.getEditText().setText("");
+                        productQuantity.getEditText().setText("");
+                        productPrice.getEditText().setText("");
+                        productTypeSpinner.setSelectedIndex(0);
+
+                        products = productDAO.getAllProducts();
+                        System.out.println(products.size());
+                        System.out.println(products.get(0).getCategory());
+
+                    } catch (NumberFormatException e) {
+                        toastText = "Give the Right Values at the Given Fields";
+                    }
+
+                }
+                Toast.makeText(AdminAddNewProductActivity.this, toastText, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    //editing existing product
+    public void editProduct(final int id) {
+
         //making the delete button visible
         deleteProductButton.setVisibility(View.VISIBLE);
         //getting the product from our database using the id
@@ -164,7 +168,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         deleteProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                productDAO.deleteProduct(id2);
+                productDAO.deleteProduct(id);
                 Toast.makeText(AdminAddNewProductActivity.this, "Product Deleted Successfully", Toast.LENGTH_LONG).show();
                 productURL.getEditText().setText("");
                 productTitle.getEditText().setText("");
@@ -176,9 +180,9 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         confirmAddProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                productDAO.deleteProduct(id2);
+                productDAO.deleteProduct(id);
                 String toastText = "Please Fill all the Available Fields";
-                List<Product> products = productDAO.getAllProducts();
+                List<Product> products;
                 if (!productURL.getEditText().getText().toString().trim().matches("") &&
                         !productTitle.getEditText().getText().toString().trim().matches("") &&
                         !productPrice.getEditText().getText().toString().trim().matches("") &&
@@ -199,7 +203,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
                         productTitle.getEditText().setText("");
                         productQuantity.getEditText().setText("");
                         productPrice.getEditText().setText("");
-                        //productTypeSpinner.setSelectedIndex(0);
+                        productTypeSpinner.setSelectedIndex(0);
 
                         products = productDAO.getAllProducts();
                         System.out.println(products.size());
@@ -215,6 +219,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         });
     }
 
+    //toolbar
     public void setToolbar() {
         //creating everything that will be contained in the drawer
         //on home nav home button click

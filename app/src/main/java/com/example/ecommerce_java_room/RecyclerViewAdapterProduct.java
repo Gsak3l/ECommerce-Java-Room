@@ -119,7 +119,6 @@ public class RecyclerViewAdapterProduct extends RecyclerView.Adapter<RecyclerVie
                 public boolean onLongClick(View v) {
                     Intent intent = new Intent(pContext, AdminAddNewProductActivity.class);
                     intent.putExtra("productId", productCode.get(position));
-                    intent.putExtra("userId", userId);
                     pContext.startActivity(intent);
                     return true;
                 }
