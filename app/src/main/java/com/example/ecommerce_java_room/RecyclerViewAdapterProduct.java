@@ -24,25 +24,24 @@ public class RecyclerViewAdapterProduct extends RecyclerView.Adapter<RecyclerVie
     //minimizing the decimal length of a double
     DecimalFormat df = new DecimalFormat();
 
-    private static final String TAG = "RecyclerViewAdapter";
-    private ArrayList<String> mImageTitles = new ArrayList<>();
-    private ArrayList<String> mImages = new ArrayList<>();
-    private ArrayList<Integer> mQuantity = new ArrayList<>();
-    private ArrayList<Double> mPrice = new ArrayList<>();
-    private ArrayList<Integer> mCode = new ArrayList<>();
-    private Context mContext;
+    private ArrayList<String> productTitles = new ArrayList<>();
+    private ArrayList<String> productImages = new ArrayList<>();
+    private ArrayList<Integer> productQuantity = new ArrayList<>();
+    private ArrayList<Double> productPrice = new ArrayList<>();
+    private ArrayList<Integer> productCode = new ArrayList<>();
+    private Context pContext;
     private String userType;
     private int userId;
 
-    public RecyclerViewAdapterProduct(Context mContext, ArrayList<String> mImages, ArrayList<String> mImageTitles,
-                                      ArrayList<Integer> mQuantity, ArrayList<Double> mPrice, ArrayList<Integer> mCode, String userType,
+    public RecyclerViewAdapterProduct(Context pContext, ArrayList<String> productImages, ArrayList<String> productTitles,
+                                      ArrayList<Integer> productQuantity, ArrayList<Double> productPrice, ArrayList<Integer> productCode, String userType,
                                       int userId) {
-        this.mContext = mContext;
-        this.mImageTitles = mImageTitles;
-        this.mImages = mImages;
-        this.mQuantity = mQuantity;
-        this.mPrice = mPrice;
-        this.mCode = mCode;
+        this.pContext = pContext;
+        this.productTitles = productTitles;
+        this.productImages = productImages;
+        this.productQuantity = productQuantity;
+        this.productPrice = productPrice;
+        this.productCode = productCode;
         this.userType = userType;
         this.userId = userId;
     }
@@ -70,7 +69,7 @@ public class RecyclerViewAdapterProduct extends RecyclerView.Adapter<RecyclerVie
     }
 
     @NonNull
-    @Override //not sure what this does
+    @Override //this method is responsible for inflating the view
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_layout_list_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
@@ -81,12 +80,12 @@ public class RecyclerViewAdapterProduct extends RecyclerView.Adapter<RecyclerVie
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         df.setMinimumFractionDigits(2); //minimum number of decimal digits
         //loading the images
-        Glide.with(mContext).asBitmap().load(mImages.get(position)).into(holder.recyclerViewProductImage);
+        Glide.with(pContext).asBitmap().load(productImages.get(position)).into(holder.recyclerViewProductImage);
         //giving values to the fields
-        holder.recyclerViewProductTitle.setText(mImageTitles.get(position));
-        holder.recyclerViewProductQuantity.setText("Pieces Available: " + mQuantity.get(position));
-        holder.recyclerViewProductPrice.setText(df.format(mPrice.get(position)) + "$"); //two decimal digits
-        holder.recyclerViewProductCode.setText("Product Code: " + mCode.get(position));
+        holder.recyclerViewProductTitle.setText(productTitles.get(position));
+        holder.recyclerViewProductQuantity.setText("Pieces Available: " + productQuantity.get(position));
+        holder.recyclerViewProductPrice.setText(df.format(productPrice.get(position)) + "$"); //two decimal digits
+        holder.recyclerViewProductCode.setText("Product Code: " + productCode.get(position));
 
         if (userType.equals("user")) { //checking if the used who logged in is an admin or just a user
             //making both product quantity and product code disappear when the user type is used (visible only for admin)
@@ -98,11 +97,11 @@ public class RecyclerViewAdapterProduct extends RecyclerView.Adapter<RecyclerVie
                 @Override
                 public void onClick(View v) {
                     //onclick it does stuff
-                    Toast.makeText(mContext, mImageTitles.get(position), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(mContext, UserProductBuy.class);
-                    intent.putExtra("productId", mCode.get(position));
+                    Toast.makeText(pContext, productTitles.get(position), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(pContext, UserProductBuy.class);
+                    intent.putExtra("productId", productCode.get(position));
                     intent.putExtra("userId", userId);
-                    mContext.startActivity(intent);
+                    pContext.startActivity(intent);
                 }
             });
         } else if (userType.equals("admin")) {
@@ -111,17 +110,17 @@ public class RecyclerViewAdapterProduct extends RecyclerView.Adapter<RecyclerVie
                 @Override
                 public void onClick(View v) {
                     //onclick it does stuff
-                    Toast.makeText(mContext, mImageTitles.get(position), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(pContext, productTitles.get(position), Toast.LENGTH_SHORT).show();
                 }
             });
             //editing or deleting an item
             holder.recyclerViewParentLayout.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    Intent intent = new Intent(mContext, AdminAddNewProductActivity.class);
-                    intent.putExtra("productId", mCode.get(position));
+                    Intent intent = new Intent(pContext, AdminAddNewProductActivity.class);
+                    intent.putExtra("productId", productCode.get(position));
                     intent.putExtra("userId", userId);
-                    mContext.startActivity(intent);
+                    pContext.startActivity(intent);
                     return true;
                 }
             });
@@ -130,7 +129,7 @@ public class RecyclerViewAdapterProduct extends RecyclerView.Adapter<RecyclerVie
 
     @Override
     public int getItemCount() {
-        return mImageTitles.size();
+        return productTitles.size();
     }
 
 }

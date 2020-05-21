@@ -40,6 +40,7 @@ public class ProductShowcase extends AppCompatActivity {
     private ArrayList<Double> productPrice = new ArrayList<>();
     private ArrayList<Integer> productCode = new ArrayList<>();
 
+    //floating buttons
     private com.google.android.material.floatingactionbutton.FloatingActionButton addNewProduct;
     private com.google.android.material.floatingactionbutton.FloatingActionButton basket;
 
@@ -55,9 +56,7 @@ public class ProductShowcase extends AppCompatActivity {
     private UserDAO userDAO;
     private List<Product> products = new ArrayList<>();
 
-
     //other stuff
-    boolean flag = true;
     private String categoryName;
     private String userType;
     private int userId;
@@ -77,7 +76,7 @@ public class ProductShowcase extends AppCompatActivity {
         userDAO = Room.databaseBuilder(this, UserDatabase.class, "User").
                 allowMainThreadQueries().build().getUserDao();
         //showing images
-        initImageBitmaps(userType);
+        initProductDetails(userType);
         addNewProduct = (com.google.android.material.floatingactionbutton.FloatingActionButton) findViewById(R.id.admin_add_new_product_button);
         basket = (com.google.android.material.floatingactionbutton.FloatingActionButton) findViewById(R.id.user_basket_button);
         //showing different buttons for user and admin
@@ -108,7 +107,7 @@ public class ProductShowcase extends AppCompatActivity {
         setToolbar();
     }
 
-    private void initImageBitmaps(String userType) {
+    private void initProductDetails(String userType) {
         //giving all the values like price quantity etc for all the products
         products = productDAO.getProductsByCategory(categoryName);
         for (int i = 0; i < products.size(); i++) {
@@ -118,14 +117,14 @@ public class ProductShowcase extends AppCompatActivity {
             productPrice.add(products.get(i).getPrice());
             productCode.add(products.get(i).getId());
         }
-        initRecyclerView(userType, userId);
+        initRecyclerView();
     }
 
-    private void initRecyclerView(String userType, int userId) {
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+    private void initRecyclerView() {
+        RecyclerView recyclerView = findViewById(R.id.recycler_view); //finding the recyclerview
         RecyclerViewAdapterProduct adapter = new RecyclerViewAdapterProduct(this, productImageUrl, productTitles,
-                productQuantity, productPrice, productCode, userType, userId);
-        recyclerView.setAdapter(adapter);
+                productQuantity, productPrice, productCode, userType, userId); //creating an adapter with the type of RecyclerViewAdapterProduct
+        recyclerView.setAdapter(adapter); //setting the adapter
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 

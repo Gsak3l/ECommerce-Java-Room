@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp">
 
+    <!--title for product-->
     <TextView
         android:id="@+id/recycler_view_product_title"
         android:layout_width="match_parent"
@@ -19,6 +20,7 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
+    <!--product image-->
     <ImageView
         android:id="@+id/recycler_view_product_image"
         android:layout_width="match_parent"
@@ -27,6 +29,7 @@
         android:layout_centerHorizontal="true"
         android:src="@mipmap/ic_launcher" />
 
+    <!--price-->
     <TextView
         android:id="@+id/recycler_view_product_price"
         android:layout_width="wrap_content"
@@ -39,6 +42,7 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
+    <!--stock-->
     <TextView
         android:id="@+id/recycler_view_product_quantity"
         android:layout_width="wrap_content"
@@ -50,6 +54,7 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
+    <!--id-->
     <TextView
         android:id="@+id/recycler_view_product_code"
         android:layout_width="wrap_content"
