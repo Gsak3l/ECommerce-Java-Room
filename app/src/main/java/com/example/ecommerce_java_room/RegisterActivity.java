@@ -48,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String fullName = registerFullName.getText().toString().trim();
                 String password = registerPassword.getText().toString().trim();
                 if (userDAO.getUserEmail(email) == null) { //checking if the user exists
-                    if (password.equals(password) && !fullName.equals("") && !email.equals("")) { //or !password.equals("")
+                    if (!password.equals("") && !fullName.equals("") && !email.equals("")) { //or !password.equals("")
                         User user = new User(fullName, password, email);
                         userDAO.insert(user);
                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);

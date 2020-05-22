@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ProductSearch">
 
+    <!--main container-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,7 +14,7 @@
         android:orientation="vertical">
 
 
-        <!--toolbar for the user-->
+        <!--drawer-->
         <FrameLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
@@ -34,11 +35,13 @@
 
         </FrameLayout>
 
+        <!--rest of the ui-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <!--material textView for the title-->
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,6 +51,7 @@
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
+            <!--material input-->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/search_find_product"
                 android:layout_width="match_parent"
@@ -62,6 +66,7 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!--material button with my style-->
             <com.rey.material.widget.Button
                 android:id="@+id/search_button"
                 android:layout_width="wrap_content"
@@ -76,6 +81,7 @@
                 android:text="Check Availability"
                 android:textColor="@android:color/white" />
 
+            <!--material textView, invisible-->
             <com.rey.material.widget.TextView
                 android:id="@+id/search_show_availability"
                 android:layout_width="match_parent"
@@ -86,13 +92,13 @@
                 android:textStyle="bold"
                 android:visibility="invisible" />
 
+            <!--invisible image-->
             <ImageView
                 android:id="@+id/search_show_product_image"
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:layout_marginTop="20dp"
                 android:visibility="invisible" />
-
 
 
         </LinearLayout>

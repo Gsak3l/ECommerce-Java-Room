@@ -51,20 +51,22 @@ public class LoginActivity extends AppCompatActivity {
                     intent = new Intent(LoginActivity.this, MainMenuActivity.class);
                     intent.putExtra("userType", "admin");
                     intent.putExtra("userId", -1);
+                    startActivity(intent);
                 } else if (user != null) {
                     intent = new Intent(LoginActivity.this, MainMenuActivity.class);
                     intent.putExtra("userType", "user");
                     intent.putExtra("userId", user.getId());
+                    startActivity(intent);
                 } else if (userDAO.getUserEmail(email) != null) {
                     Toast.makeText(LoginActivity.this, "Incorrect Password!", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(LoginActivity.this, "Those Credentials do not match any User. Sign Up Now!",
                             Toast.LENGTH_LONG).show();
                     intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                    startActivity(intent);
                 }
                 loginEmail.setText("");
                 loginPassword.setText("");
-                startActivity(intent);
             }
         });
     }

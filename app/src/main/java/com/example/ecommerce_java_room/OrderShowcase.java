@@ -64,6 +64,7 @@ public class OrderShowcase extends AppCompatActivity {
         setContentView(R.layout.activity_order_showcase);
         userId = Integer.parseInt(getIntent().getExtras().get("userId").toString());
         userType = getIntent().getExtras().get("userType").toString();
+        //creating the db for each variable
         productDAO = Room.databaseBuilder(this, ProductDatabase.class, "Product")
                 .allowMainThreadQueries().build().getProductDao();
         orderDAO = Room.databaseBuilder(this, OrderDatabase.class, "Order")

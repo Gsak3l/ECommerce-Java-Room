@@ -67,6 +67,7 @@
             android:textColor="#000"
             android:textSize="17sp" />
 
+        <!--cancel button-->
         <ImageView
             android:id="@+id/order_cancel_order"
             android:layout_width="40dp"

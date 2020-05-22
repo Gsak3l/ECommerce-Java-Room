@@ -9,11 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.ecommerce_java_room.data.OrderDAO;
 import com.example.ecommerce_java_room.data.OrderDatabase;
 import com.example.ecommerce_java_room.data.ProductDAO;
@@ -93,21 +91,26 @@ public class ProductSearch extends AppCompatActivity {
                         //showing different results for the admin
                         if (userId == -1) {
                             //doing some extra things that i don't want to, but i have to
+                            //getting the product by its id
                             Product product = productDAO.getProduct(Integer.parseInt(searchId.getEditText().getText().toString().trim()));
                             List<Order> productOrders = orderDAO.getProductOrders(Integer.parseInt(searchId.getEditText().getText().toString().trim()));
                             int productPieces = 0;
+                            //total pieces sold for this specific item
                             for (int i = 0; i < productOrders.size(); i++) {
                                 productPieces += productOrders.get(i).getOrderProductQuantity();
                             }
+                            //displaying stuff
                             showAvailability.setText("Product Stock: " + product.getQuantity() + ", " +
                                     "Total Sales: " + orderDAO.getAllOrders().size() + "\n" +
                                     "Total Pieces Sold for this Item: " + productPieces);
+                            //making the invisible text, visible
                             showAvailability.setVisibility(View.VISIBLE);
+                            //getting the image by its url using picasso this time
                             Picasso.get().load(product.getImageURL()).into(showImage);
-                            showImage.setVisibility(View.VISIBLE);
-                            showImage.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
-                            showImage.getLayoutParams().height = 900;
-                            searchId.getEditText().setText("");
+                            showImage.setVisibility(View.VISIBLE); //making the image visible
+                            showImage.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT; //width for the image
+                            showImage.getLayoutParams().height = 900; //height for the image
+                            searchId.getEditText().setText(""); //emptying the text
                         } else {
                             Product product = productDAO.getProduct(Integer.parseInt(searchId.getEditText().getText().toString().trim()));
                             showAvailability.setText("Product Stock: " + product.getQuantity());
