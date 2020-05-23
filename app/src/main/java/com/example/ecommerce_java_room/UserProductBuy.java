@@ -64,7 +64,6 @@ public class UserProductBuy extends AppCompatActivity {
     private AccountHeader accountHeader;
     //user id
     private int userId;
-    //id that comes from the clicked product on the productshowcase page
     private int productId;
 
 
@@ -97,8 +96,6 @@ public class UserProductBuy extends AppCompatActivity {
         productQuantity.setMaxValue(product.getQuantity() - 1);
         productPrice.setText(df.format(product.getPrice()) + "$");
         toolbar = findViewById(R.id.toolbar_buy);
-        //setting up the tool bar
-        setToolbar();
         //action for the onclick add purchase button
         buyProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,11 +109,16 @@ public class UserProductBuy extends AppCompatActivity {
                     orderDAO.insert(order);
                     Toast.makeText(UserProductBuy.this, "Success!", Toast.LENGTH_LONG).show();
                     productQuantity.setValue(0);
+                    //updating the  spinner instantly
+                    Product updatedProduct = productDAO.getProduct(productId);
+                    productQuantity.setMaxValue(updatedProduct.getQuantity() - 1);
                 } else {
                     Toast.makeText(UserProductBuy.this, "Transaction Failed!", Toast.LENGTH_LONG).show();
                 }
             }
         });
+        //setting up the tool bar
+        setToolbar();
     }
 
 

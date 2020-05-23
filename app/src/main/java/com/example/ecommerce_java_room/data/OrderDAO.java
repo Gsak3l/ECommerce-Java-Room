@@ -1,7 +1,6 @@
 package com.example.ecommerce_java_room.data;
 
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -31,7 +30,6 @@ public interface OrderDAO {
     //getting all orders
     @Query("SELECT * FROM [Order]")
     List<Order> getAllOrders();
-
 
     //deleting a specific order
     @Query("DELETE FROM [Order] WHERE id= :id")
